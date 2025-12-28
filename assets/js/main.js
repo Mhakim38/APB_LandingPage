@@ -29,7 +29,7 @@ const menuCarousel = {
         },
         {
             name: "Ikan Bawal Penyet",
-            description: "Premium white pomfret fish marinated with authentic Indonesian spices, deep-fried to golden perfection, then smashed to enhance the flavors. Accompanied by our signature fiery sambal, crispy fried tofu, golden tempeh, steamed rice, and a medley of fresh vegetables. A seafood lover's delight with bold, traditional flavors.",
+            description: "Premium white pomfret fish marinated with authentic Indonesian spices, deep-fried to golden perfection, then smashed to enhance the flavors. Accompanied by our signature fiery sambal, crispy fried tofu, golden tempeh, and a medley of fresh vegetables. A seafood lover's delight with bold, traditional flavors.",
             price: "RM 17.90"
         },
         {
@@ -44,12 +44,12 @@ const menuCarousel = {
         },
         {
             name: "Tauhu Tempe Penyet",
-            description: "A delicious vegetarian option! Golden-fried tofu (bean curd) and tempeh marinated in aromatic Indonesian spices, then smashed to perfection to absorb our signature sambal's bold flavors. Served with fragrant steamed rice, fresh cucumber, cabbage, and tomatoes. Packed with protein and authentic taste that even meat lovers will enjoy!",
+            description: "A delicious vegetarian option! Golden-fried tofu (bean curd) and tempeh marinated in aromatic Indonesian spices, then smashed to perfection to absorb our signature sambal's bold flavors. Served with fresh cucumber, cabbage, and tomatoes. Packed with protein and authentic taste that even meat lovers will enjoy!",
             price: "RM 8.90"
         },
         {
             name: "Rendang Daging Padang Asli",
-            description: "Authentic Padang-style beef rendang slow-cooked to perfection in aromatic coconut milk and a complex blend of traditional spices including lemongrass, galangal, turmeric, and chilies. The beef is simmered for hours until tender and infused with rich, deep flavors, then cooked until the sauce reduces to a thick, dark coating. Served with steamed rice for a truly authentic Indonesian culinary experience that melts in your mouth.",
+            description: "Authentic Padang-style beef rendang slow-cooked to perfection in aromatic coconut milk and a complex blend of traditional spices including lemongrass, galangal, turmeric, and chilies. The beef is simmered for hours until tender and infused with rich, deep flavors, then cooked until the sauce reduces to a thick, dark coating. A truly authentic Indonesian culinary experience that melts in your mouth.",
             price: "RM 14.90"
         }
     ],
