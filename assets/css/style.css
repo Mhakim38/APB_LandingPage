@@ -576,13 +576,8 @@ html {
 .dish-actions {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 1rem;
-}
-
-.dish-actions .btn-group {
-  display: flex;
-  gap: 0.5rem;
 }
 
 .btn-feedback-alt {
@@ -613,7 +608,7 @@ html {
    Feedback Section
    =================================== */
 .feedback-section {
-  background-color: var(--white);
+  background-color: var(--body-bg);
   padding: 100px 0;
   color: var(--font-tertiary);
 }
