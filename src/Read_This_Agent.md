@@ -209,6 +209,26 @@
 * Carousel / horizontal scroll
 * Responsive (1 card mobile, 3 desktop)
 
+#### Implementation Details (Current - Bootstrap 4 Carousel)
+
+* **Bootstrap 4 Native Carousel**: Uses Bootstrap 4's `.carousel` component
+  * `data-ride="carousel"` for auto-rotation
+  * `data-interval="5000"` for 5-second intervals
+* **Sliding Window**: 4 slides total, each showing 3 feedback cards
+  * Slide 1: Cards 1, 2, 3 (Ahmad, Sarah, Muhamad)
+  * Slide 2: Cards 2, 3, 4 (Sarah, Muhamad, Nurul)
+  * Slide 3: Cards 3, 4, 5 (Muhamad, Nurul, Tan)
+  * Slide 4: Cards 4, 5, 6 (Nurul, Tan, Siti)
+  * Creates sliding window effect with overlapping cards
+* **Navigation Controls**:
+  * Circular arrow buttons positioned at carousel center
+  * Custom styled with white background and primary color icons
+  * Hover effect: changes to secondary color with scale animation
+* **Grid Layout**: Bootstrap `col-lg-4` for 3-column desktop layout
+  * Responsive breakpoints adjust to single column on mobile
+* **Auto-rotation**: Automatically cycles through slides every 5 seconds
+* **No Custom JavaScript**: Relies entirely on Bootstrap 4's built-in carousel functionality
+
 ---
 
 ## Section 4 – Book a Table
@@ -300,6 +320,115 @@ Commit messages must be **clear, senior-level, and descriptive**.
 * Avoid over-animation
 * Prioritize clarity and premium feel
 * Keep code readable and maintainable
+
+---
+
+---
+
+## Change Log
+
+### December 28, 2025
+
+#### Feedback Carousel Migration to Bootstrap 4
+
+**Change:** Migrated feedback carousel from custom JavaScript implementation to Bootstrap 4 native carousel component.
+
+**Reason:** Standardize on framework components for better maintainability and reliability.
+
+**Implementation:**
+
+* **HTML Changes:**
+  * Replaced custom `.feedback-carousel-wrapper` structure with Bootstrap 4 `.carousel` component
+  * Added `data-ride="carousel"` and `data-interval="5000"` attributes
+  * Created 4 `.carousel-item` slides with Bootstrap grid (`.row` + `.col-lg-4`)
+  * Each slide contains 3 feedback cards in a row
+  * Added Bootstrap carousel controls (`.carousel-control-prev` and `.carousel-control-next`)
+  * Removed old custom navigation buttons
+
+* **CSS Changes:**
+  * Removed custom `.feedback-carousel-wrapper`, `.feedback-carousel-track` styles
+  * Removed custom `.feedback-nav` navigation button styles
+  * Added Bootstrap carousel control styling with circular icons
+  * Styled `.carousel-control-icon` with white background and primary color
+  * Added hover effects for carousel controls
+  * Maintained `.feedback-card` styling with tertiary background
+
+* **JavaScript Changes:**
+  * Completely removed custom `feedbackCarousel` object (~130 lines)
+  * No custom JavaScript needed - Bootstrap handles all carousel functionality
+  * Auto-rotation, sliding transitions, and navigation handled by Bootstrap
+
+**Benefits:**
+
+* Reduced custom code by ~150 lines
+* More reliable and tested carousel behavior
+* Better accessibility with built-in ARIA attributes
+* Easier to maintain and debug
+* Consistent with Bootstrap design patterns
+
+**Behavior:**
+
+* Shows 3 feedback cards at a time
+* Slides one card position per navigation click
+* Loops infinitely through all 6 feedback cards
+* Auto-rotates every 5 seconds
+* Smooth slide transitions
+
+---
+
+## Change Log
+
+### December 28, 2025
+
+#### Feedback Carousel Migration to Bootstrap 4
+
+**Change:** Migrated feedback carousel from custom JavaScript implementation to Bootstrap 4 native carousel component.
+
+**Reason:** Standardize on framework components for better maintainability and reliability. All changes must be documented per project requirements.
+
+**Implementation:**
+
+* **HTML Changes:**
+  * Replaced custom `.feedback-carousel-wrapper` structure with Bootstrap 4 `.carousel` component
+  * Added `data-ride="carousel"` and `data-interval="5000"` attributes for auto-play
+  * Created 4 `.carousel-item` slides with Bootstrap grid (`.row` + `.col-lg-4`)
+  * Each slide contains 3 feedback cards in a row
+  * Added Bootstrap carousel controls (`.carousel-control-prev` and `.carousel-control-next`)
+  * Removed old custom navigation buttons (`#feedbackPrev`, `#feedbackNext`)
+
+* **CSS Changes:**
+  * Removed custom `.feedback-carousel-wrapper`, `.feedback-carousel-track` styles
+  * Removed custom `.feedback-nav` navigation button styles (~40 lines)
+  * Added Bootstrap carousel control styling:
+    * `.carousel-control-prev` and `.carousel-control-next` positioned at 50% height
+    * `.carousel-control-icon` with white background, circular shape
+    * Hover effects with secondary color and scale animation
+  * Maintained `.feedback-card` styling with tertiary background
+  * Added `#feedbackCarousel` container padding and inner padding
+
+* **JavaScript Changes:**
+  * Completely removed custom `feedbackCarousel` object (~130 lines of code)
+  * Removed all custom carousel logic: init, navigation, infinite loop, cloning
+  * No custom JavaScript needed - Bootstrap handles all carousel functionality
+  * Auto-rotation, sliding transitions, and navigation handled by Bootstrap data attributes
+
+**Benefits:**
+
+* Reduced custom code by ~170 lines total
+* More reliable and tested carousel behavior
+* Better accessibility with built-in ARIA attributes
+* Easier to maintain and debug
+* Consistent with Bootstrap design patterns
+* No complex state management or transition handling required
+
+**Behavior:**
+
+* Shows 3 feedback cards at a time on desktop
+* Slides show overlapping content (sliding window pattern)
+* Loops infinitely through all 4 slides automatically
+* Auto-rotates every 5 seconds
+* Smooth Bootstrap slide transitions
+* Responsive design (single column on mobile)
 
 ---
 
