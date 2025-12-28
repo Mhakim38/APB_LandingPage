@@ -208,7 +208,6 @@ html {
   padding: 0 0 100px;
   background-color: var(--body-bg);
   margin-top: 0;
-  overflow: hidden;
 }
 
 .oval-background {
@@ -251,24 +250,25 @@ html {
 /* Menu Carousel */
 .menu-carousel-wrapper {
   position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1400px;
-  height: 650px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
+  padding-bottom: 20px;
 }
 
 .menu-carousel {
   position: relative;
   width: 100%;
+  max-width: 1400px;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
@@ -277,8 +277,6 @@ html {
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   pointer-events: auto;
-  left: 50%;
-  top: 50%;
 }
 
 .menu-item img {
@@ -289,13 +287,14 @@ html {
   border: 5px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Circular positioning - using rotation around center */
-/* Each position rotates 36 degrees (360/10 positions for smooth circular flow) */
+/* VISIBLE DISHES (Bottom half of oval) */
 
-/* Position 0 - Bottom center (0 degrees) */
+/* Position 0 - Center (Active) - Bottom center */
 .menu-item[data-position="0"] {
   z-index: 10;
-  transform: translate(-50%, -50%) rotate(0deg) translateY(280px) rotate(0deg) scale(1);
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) scale(1);
   opacity: 1;
   filter: grayscale(0%);
 }
@@ -307,10 +306,12 @@ html {
   border-width: 6px;
 }
 
-/* Position 1 - Right */
+/* Position 1 - Right side */
 .menu-item[data-position="1"] {
   z-index: 8;
-  transform: translate(-50%, -50%) rotate(-36deg) translateY(280px) rotate(36deg) scale(0.75);
+  left: 68%;
+  bottom: 100px;
+  transform: translateX(-50%) scale(0.75);
   opacity: 0.85;
   filter: grayscale(10%);
 }
@@ -323,7 +324,9 @@ html {
 /* Position 2 - Far right */
 .menu-item[data-position="2"] {
   z-index: 6;
-  transform: translate(-50%, -50%) rotate(-72deg) translateY(280px) rotate(72deg) scale(0.6);
+  left: 85%;
+  bottom: 180px;
+  transform: translateX(-50%) scale(0.6);
   opacity: 0.65;
   filter: grayscale(20%);
 }
@@ -333,38 +336,12 @@ html {
   height: 140px;
 }
 
-/* Position 3 - Right top (hidden behind hero) */
-.menu-item[data-position="3"] {
-  z-index: 1;
-  transform: translate(-50%, -50%) rotate(-108deg) translateY(280px) rotate(108deg) scale(0.5);
-  opacity: 0;
-  filter: grayscale(40%);
-  pointer-events: none;
-}
-
-.menu-item[data-position="3"] img {
-  width: 120px;
-  height: 120px;
-}
-
-/* Position 4 - Top center (hidden behind hero) */
-.menu-item[data-position="4"] {
-  z-index: 0;
-  transform: translate(-50%, -50%) rotate(-144deg) translateY(280px) rotate(144deg) scale(0.4);
-  opacity: 0;
-  filter: grayscale(50%);
-  pointer-events: none;
-}
-
-.menu-item[data-position="4"] img {
-  width: 100px;
-  height: 100px;
-}
-
-/* Position -1 - Left */
+/* Position -1 - Left side */
 .menu-item[data-position="-1"] {
   z-index: 8;
-  transform: translate(-50%, -50%) rotate(36deg) translateY(280px) rotate(-36deg) scale(0.75);
+  left: 32%;
+  bottom: 100px;
+  transform: translateX(-50%) scale(0.75);
   opacity: 0.85;
   filter: grayscale(10%);
 }
@@ -377,7 +354,9 @@ html {
 /* Position -2 - Far left */
 .menu-item[data-position="-2"] {
   z-index: 6;
-  transform: translate(-50%, -50%) rotate(72deg) translateY(280px) rotate(-72deg) scale(0.6);
+  left: 15%;
+  bottom: 180px;
+  transform: translateX(-50%) scale(0.6);
   opacity: 0.65;
   filter: grayscale(20%);
 }
@@ -387,13 +366,47 @@ html {
   height: 140px;
 }
 
-/* Position -3 - Left top (hidden behind hero) */
-.menu-item[data-position="-3"] {
-  z-index: 1;
-  transform: translate(-50%, -50%) rotate(108deg) translateY(280px) rotate(-108deg) scale(0.5);
-  opacity: 0;
+/* HIDDEN DISHES (Top half - behind hero section) */
+/* These continue the circular arc but are hidden by z-index */
+
+/* Position 3 - Right top (continuing arc upward) */
+.menu-item[data-position="3"] {
+  z-index: -2;
+  left: 92%;
+  bottom: 280px;
+  transform: translateX(-50%) scale(0.5);
+  opacity: 0.5;
+  filter: grayscale(30%);
+}
+
+.menu-item[data-position="3"] img {
+  width: 120px;
+  height: 120px;
+}
+
+/* Position 4 - Top right (highest point on right) */
+.menu-item[data-position="4"] {
+  z-index: -2;
+  left: 95%;
+  bottom: 360px;
+  transform: translateX(-50%) scale(0.4);
+  opacity: 0.3;
   filter: grayscale(40%);
-  pointer-events: none;
+}
+
+.menu-item[data-position="4"] img {
+  width: 100px;
+  height: 100px;
+}
+
+/* Position -3 - Left top (continuing arc upward) */
+.menu-item[data-position="-3"] {
+  z-index: -2;
+  left: 8%;
+  bottom: 280px;
+  transform: translateX(-50%) scale(0.5);
+  opacity: 0.5;
+  filter: grayscale(30%);
 }
 
 .menu-item[data-position="-3"] img {
@@ -401,13 +414,14 @@ html {
   height: 120px;
 }
 
-/* Position -4 - Top center (hidden behind hero) */
+/* Position -4 - Top left (highest point on left) */
 .menu-item[data-position="-4"] {
-  z-index: 0;
-  transform: translate(-50%, -50%) rotate(144deg) translateY(280px) rotate(-144deg) scale(0.4);
-  opacity: 0;
-  filter: grayscale(50%);
-  pointer-events: none;
+  z-index: -2;
+  left: 5%;
+  bottom: 360px;
+  transform: translateX(-50%) scale(0.4);
+  opacity: 0.3;
+  filter: grayscale(40%);
 }
 
 .menu-item[data-position="-4"] img {
@@ -429,23 +443,24 @@ html {
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 20;
-  bottom: 200px;
+  bottom: 50%;
+  transform: translateY(50%);
   pointer-events: auto;
 }
 
 .carousel-nav:hover {
   background-color: var(--secondary);
   color: var(--primary);
-  transform: scale(1.1);
+  transform: translateY(50%) scale(1.1);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-nav.prev {
-  left: -50px;
+  left: 5%;
 }
 
 .carousel-nav.next {
-  right: -50px;
+  right: 5%;
 }
 
 .carousel-nav i {
