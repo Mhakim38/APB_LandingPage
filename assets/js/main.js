@@ -124,114 +124,47 @@ document.addEventListener('DOMContentLoaded', function() {
 // Feedback Carousel
 // ===================================
 const feedbackCarousel = {
-    currentPage: 0,
-    itemsPerPage: 3,
-    cards: [],
-    dots: [],
-
     init: function() {
-        this.cards = document.querySelectorAll('.feedback-card');
-        this.createDots();
-        this.updateView();
-        
-        // Auto-rotate every 5 seconds
-        setInterval(() => {
-            this.next();
-        }, 5000);
-
-        // Add touch support for mobile
-        let startX = 0;
         const carousel = document.getElementById('feedbackCarousel');
         
-        carousel.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-        
-        carousel.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-            
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    this.next();
-                } else {
-                    this.prev();
-                }
-            }
-        });
-    },
+        // Add touch/mouse drag support for smooth horizontal scrolling
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-    createDots: function() {
-        const dotsContainer = document.getElementById('feedbackDots');
-        const totalPages = Math.ceil(this.cards.length / this.getItemsPerPage());
-        
-        for (let i = 0; i < totalPages; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('feedback-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => this.goToPage(i));
-            dotsContainer.appendChild(dot);
-            this.dots.push(dot);
-        }
-    },
-
-    getItemsPerPage: function() {
-        // Responsive items per page
-        if (window.innerWidth < 768) return 1;
-        if (window.innerWidth < 992) return 2;
-        return 3;
-    },
-
-    updateView: function() {
-        const itemsPerPage = this.getItemsPerPage();
-        const start = this.currentPage * itemsPerPage;
-        const end = start + itemsPerPage;
-
-        this.cards.forEach((card, index) => {
-            if (index >= start && index < end) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.style.cursor = 'grabbing';
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
         });
 
-        // Update dots
-        this.dots.forEach((dot, index) => {
-            dot.classList.remove('active');
-            if (index === this.currentPage) {
-                dot.classList.add('active');
-            }
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
         });
-    },
 
-    next: function() {
-        const totalPages = Math.ceil(this.cards.length / this.getItemsPerPage());
-        this.currentPage = (this.currentPage + 1) % totalPages;
-        this.updateView();
-    },
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
 
-    prev: function() {
-        const totalPages = Math.ceil(this.cards.length / this.getItemsPerPage());
-        this.currentPage = (this.currentPage - 1 + totalPages) % totalPages;
-        this.updateView();
-    },
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
 
-    goToPage: function(page) {
-        this.currentPage = page;
-        this.updateView();
+        // Set initial cursor
+        carousel.style.cursor = 'grab';
     }
 };
 
 // Initialize feedback carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     feedbackCarousel.init();
-});
-
-// Update view on window resize
-window.addEventListener('resize', function() {
-    if (typeof feedbackCarousel !== 'undefined') {
-        feedbackCarousel.updateView();
-    }
 });
 
 // ===================================
