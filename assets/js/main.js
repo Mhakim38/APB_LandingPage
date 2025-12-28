@@ -130,6 +130,7 @@ const feedbackCarousel = {
     autoRotateTimer: null,
     autoRotateInterval: 5000, // 5 seconds
     totalCards: 6,
+    visibleCards: 3,
 
     init: function() {
         this.cards = document.querySelectorAll('.feedback-card');
@@ -171,23 +172,33 @@ const feedbackCarousel = {
     },
 
     next: function() {
-        this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+        // Maximum index is totalCards - visibleCards (6 - 3 = 3)
+        const maxIndex = this.totalCards - this.visibleCards;
+        if (this.currentIndex < maxIndex) {
+            this.currentIndex++;
+        } else {
+            this.currentIndex = 0; // Loop back to start
+        }
         this.updateCarousel();
         this.resetTimer();
     },
 
     prev: function() {
-        this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+        const maxIndex = this.totalCards - this.visibleCards;
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+        } else {
+            this.currentIndex = maxIndex; // Loop to end
+        }
         this.updateCarousel();
         this.resetTimer();
     },
 
     updateCarousel: function() {
         // Calculate the translateX value
-        // Each card is 33.333% width + gap (2rem)
-        const cardWidth = 33.333;
-        const gapWidth = 2; // 2rem gap in percentage approximation
-        const translateValue = -this.currentIndex * (cardWidth + gapWidth);
+        // Each card is 33.333% width + gap (2rem = ~1.33% per card for 3 cards)
+        const cardWidthPercent = 100 / this.visibleCards; // 33.333%
+        const translateValue = -this.currentIndex * cardWidthPercent;
         
         this.track.style.transform = `translateX(${translateValue}%)`;
     }
