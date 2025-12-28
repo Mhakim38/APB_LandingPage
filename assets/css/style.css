@@ -273,7 +273,7 @@ html {
 
 .menu-item {
   position: absolute;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out, left 0.8s ease-out, bottom 0.8s ease-out;
   cursor: pointer;
   pointer-events: auto;
 }
@@ -282,7 +282,7 @@ html {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s ease-out;
   border: 5px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -365,67 +365,63 @@ html {
   height: 140px;
 }
 
-/* HIDDEN DISHES (Top half - behind hero section) */
-/* These continue the circular arc but are hidden by z-index */
-
-/* Position 3 - Right top (continuing arc upward) */
+/* Position 3 - Farthest right (fading out) */
 .menu-item[data-position="3"] {
-  z-index: -2;
-  left: 92%;
-  bottom: 280px;
+  z-index: 4;
+  left: 50%;
+  bottom: 0;
   transform: translateX(-50%) scale(0.5);
-  opacity: 0.5;
+  opacity: 0;
   filter: grayscale(30%);
+  pointer-events: none;
 }
 
 .menu-item[data-position="3"] img {
-  width: 120px;
-  height: 120px;
-}
-
-/* Position 4 - Top right (highest point on right) */
-.menu-item[data-position="4"] {
-  z-index: -2;
-  left: 95%;
-  bottom: 360px;
-  transform: translateX(-50%) scale(0.4);
-  opacity: 0.3;
-  filter: grayscale(40%);
-}
-
-.menu-item[data-position="4"] img {
   width: 100px;
   height: 100px;
 }
 
-/* Position -3 - Left top (continuing arc upward) */
+/* Position -3 - Farthest left (fading out) */
 .menu-item[data-position="-3"] {
-  z-index: -2;
-  left: 8%;
-  bottom: 280px;
+  z-index: 4;
+  left: 50%;
+  bottom: 0;
   transform: translateX(-50%) scale(0.5);
-  opacity: 0.5;
+  opacity: 0;
   filter: grayscale(30%);
+  pointer-events: none;
 }
 
 .menu-item[data-position="-3"] img {
-  width: 120px;
-  height: 120px;
-}
-
-/* Position -4 - Top left (highest point on left) */
-.menu-item[data-position="-4"] {
-  z-index: -2;
-  left: 5%;
-  bottom: 360px;
-  transform: translateX(-50%) scale(0.4);
-  opacity: 0.3;
-  filter: grayscale(40%);
-}
-
-.menu-item[data-position="-4"] img {
   width: 100px;
   height: 100px;
+}
+
+/* Hidden positions (out of range) */
+.menu-item[data-position="4"],
+.menu-item[data-position="-4"],
+.menu-item[data-position="5"],
+.menu-item[data-position="-5"],
+.menu-item[data-position="6"],
+.menu-item[data-position="-6"] {
+  z-index: -1;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) scale(0.3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-item[data-position="3"] img,
+.menu-item[data-position="-3"] img,
+.menu-item[data-position="4"] img,
+.menu-item[data-position="-4"] img,
+.menu-item[data-position="5"] img,
+.menu-item[data-position="-5"] img,
+.menu-item[data-position="6"] img,
+.menu-item[data-position="-6"] img {
+  width: 80px;
+  height: 80px;
 }
 
 .carousel-nav {

@@ -41,6 +41,16 @@ const menuCarousel = {
             name: "Ayam Penyet Family Pack",
             description: "Perfect for family dining! 4 pieces of Ayam Penyet with rice, vegetables, and all the condiments. Feeds 3-4 people.",
             price: "RM 45.90"
+        },
+        {
+            name: "Ayam Penyet Deluxe",
+            description: "Our most luxurious offering! Premium chicken with special marinade, extra sides, and chef's special sambal blend.",
+            price: "RM 19.90"
+        },
+        {
+            name: "Ayam Penyet Jumbo",
+            description: "Extra large portion for the hearty appetite! Double the chicken, double the flavor, with all the traditional accompaniments.",
+            price: "RM 22.90"
         }
     ],
 
@@ -52,7 +62,7 @@ const menuCarousel = {
         this.items.forEach((item, index) => {
             item.addEventListener('click', () => {
                 const position = parseInt(item.getAttribute('data-position'));
-                if (position !== 0 && Math.abs(position) <= 2) {
+                if (position !== 0 && Math.abs(position) <= 3) {
                     // Calculate how many steps to rotate
                     if (position > 0) {
                         for (let i = 0; i < position; i++) {
@@ -73,10 +83,10 @@ const menuCarousel = {
             // Calculate relative position from current index
             let position = index - this.currentIndex;
             
-            // Normalize position to range [-2, 2]
-            if (position > 2) {
+            // Normalize position to range [-3, 3]
+            if (position > 3) {
                 position = position - this.items.length;
-            } else if (position < -2) {
+            } else if (position < -3) {
                 position = position + this.items.length;
             }
             
