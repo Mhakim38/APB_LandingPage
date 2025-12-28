@@ -124,14 +124,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Feedback Carousel
 // ===================================
 const feedbackCarousel = {
-    currentPage: 0,
-    pages: [],
+    currentIndex: 0,
+    cards: [],
     dots: [],
     autoRotateTimer: null,
     autoRotateInterval: 5000, // 5 seconds
 
     init: function() {
-        this.pages = document.querySelectorAll('.feedback-page');
+        this.cards = document.querySelectorAll('.feedback-card');
         this.dots = document.querySelectorAll('.feedback-dot');
         const prevBtn = document.getElementById('feedbackPrev');
         const nextBtn = document.getElementById('feedbackNext');
@@ -139,7 +139,7 @@ const feedbackCarousel = {
         // Add click handlers to dots
         this.dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
-                this.goToPage(index);
+                this.goToCard(index);
             });
         });
 
@@ -151,8 +151,8 @@ const feedbackCarousel = {
             nextBtn.addEventListener('click', () => this.next());
         }
 
-        // Show first page
-        this.showPage(0, 'none');
+        // Show first card
+        this.showCard(0, 'none');
         
         // Start auto-rotation
         this.startAutoRotate();
@@ -176,57 +176,57 @@ const feedbackCarousel = {
         this.startAutoRotate();
     },
 
-    goToPage: function(pageIndex) {
-        if (pageIndex >= 0 && pageIndex < this.pages.length && pageIndex !== this.currentPage) {
-            const direction = pageIndex > this.currentPage ? 'left' : 'right';
-            this.showPage(pageIndex, direction);
-            this.currentPage = pageIndex;
+    goToCard: function(index) {
+        if (index >= 0 && index < this.cards.length && index !== this.currentIndex) {
+            const direction = index > this.currentIndex ? 'left' : 'right';
+            this.showCard(index, direction);
+            this.currentIndex = index;
             this.resetTimer();
         }
     },
 
     next: function() {
-        const nextPage = (this.currentPage + 1) % this.pages.length;
-        this.showPage(nextPage, 'left');
-        this.currentPage = nextPage;
+        const nextIndex = (this.currentIndex + 1) % this.cards.length;
+        this.showCard(nextIndex, 'left');
+        this.currentIndex = nextIndex;
         this.resetTimer();
     },
 
     prev: function() {
-        const prevPage = (this.currentPage - 1 + this.pages.length) % this.pages.length;
-        this.showPage(prevPage, 'right');
-        this.currentPage = prevPage;
+        const prevIndex = (this.currentIndex - 1 + this.cards.length) % this.cards.length;
+        this.showCard(prevIndex, 'right');
+        this.currentIndex = prevIndex;
         this.resetTimer();
     },
 
-    showPage: function(pageIndex, direction) {
+    showCard: function(index, direction) {
         // Remove all animation classes
-        this.pages.forEach(page => {
-            page.classList.remove('active', 'slide-out-left', 'slide-out-right', 'slide-in-left', 'slide-in-right');
+        this.cards.forEach(card => {
+            card.classList.remove('active', 'slide-out-left', 'slide-out-right', 'slide-in-left', 'slide-in-right');
         });
 
         // Apply animations based on direction
         if (direction === 'left') {
-            // Sliding to next page (left direction)
-            if (this.pages[this.currentPage]) {
-                this.pages[this.currentPage].classList.add('slide-out-left');
+            // Sliding to next card (left direction)
+            if (this.cards[this.currentIndex]) {
+                this.cards[this.currentIndex].classList.add('slide-out-left');
             }
-            this.pages[pageIndex].classList.add('active', 'slide-in-right');
+            this.cards[index].classList.add('active', 'slide-in-right');
         } else if (direction === 'right') {
-            // Sliding to previous page (right direction)
-            if (this.pages[this.currentPage]) {
-                this.pages[this.currentPage].classList.add('slide-out-right');
+            // Sliding to previous card (right direction)
+            if (this.cards[this.currentIndex]) {
+                this.cards[this.currentIndex].classList.add('slide-out-right');
             }
-            this.pages[pageIndex].classList.add('active', 'slide-in-left');
+            this.cards[index].classList.add('active', 'slide-in-left');
         } else {
             // No animation (initial load)
-            this.pages[pageIndex].classList.add('active');
+            this.cards[index].classList.add('active');
         }
 
         // Update dots
-        this.dots.forEach((dot, index) => {
+        this.dots.forEach((dot, dotIndex) => {
             dot.classList.remove('active');
-            if (index === pageIndex) {
+            if (dotIndex === index) {
                 dot.classList.add('active');
             }
         });

@@ -631,59 +631,53 @@ html {
 .feedback-carousel-wrapper {
   margin-top: 4rem;
   position: relative;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .feedback-carousel {
   position: relative;
   overflow: hidden;
-  min-height: 400px;
+  min-height: 300px;
 }
 
-.feedback-page {
+.feedback-card {
   position: absolute;
   width: 100%;
+  background-color: var(--tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease, opacity 0.6s ease;
   opacity: 0;
   transform: translateX(100%);
-  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-.feedback-page.active {
+.feedback-card.active {
   position: relative;
   opacity: 1;
   transform: translateX(0);
 }
 
-.feedback-page.slide-out-left {
+.feedback-card.slide-out-left {
   transform: translateX(-100%);
   opacity: 0;
 }
 
-.feedback-page.slide-in-right {
+.feedback-card.slide-in-right {
   transform: translateX(0);
   opacity: 1;
 }
 
-.feedback-page.slide-out-right {
+.feedback-card.slide-out-right {
   transform: translateX(100%);
   opacity: 0;
 }
 
-.feedback-page.slide-in-left {
+.feedback-card.slide-in-left {
   transform: translateX(0);
   opacity: 1;
-}
-
-.feedback-card {
-  background-color: var(--tertiary);
-  border-radius: 20px;
-  padding: 2rem;
-  height: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.feedback-card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .feedback-text {
