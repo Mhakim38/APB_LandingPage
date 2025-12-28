@@ -131,10 +131,19 @@ const feedbackCarousel = {
     autoRotateInterval: 5000, // 5 seconds
     totalCards: 6,
     visibleCards: 3,
+    isTransitioning: false,
 
     init: function() {
         this.cards = document.querySelectorAll('.feedback-card');
         this.track = document.getElementById('feedbackCarouselTrack');
+        
+        // Clone first 3 cards and append to end for infinite loop
+        for (let i = 0; i < this.visibleCards; i++) {
+            const clone = this.cards[i].cloneNode(true);
+            clone.classList.add('cloned');
+            this.track.appendChild(clone);
+        }
+        
         const prevBtn = document.getElementById('feedbackPrev');
         const nextBtn = document.getElementById('feedbackNext');
         
@@ -145,6 +154,11 @@ const feedbackCarousel = {
         if (nextBtn) {
             nextBtn.addEventListener('click', () => this.next());
         }
+
+        // Listen for transition end to handle infinite loop
+        this.track.addEventListener('transitionend', () => {
+            this.handleTransitionEnd();
+        });
 
         // Initialize position
         this.updateCarousel();
@@ -172,35 +186,67 @@ const feedbackCarousel = {
     },
 
     next: function() {
-        // Maximum index is totalCards - visibleCards (6 - 3 = 3)
-        const maxIndex = this.totalCards - this.visibleCards;
-        if (this.currentIndex < maxIndex) {
-            this.currentIndex++;
-        } else {
-            this.currentIndex = 0; // Loop back to start
-        }
-        this.updateCarousel();
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+        this.currentIndex++;
+        this.updateCarousel(true);
         this.resetTimer();
     },
 
     prev: function() {
-        const maxIndex = this.totalCards - this.visibleCards;
-        if (this.currentIndex > 0) {
-            this.currentIndex--;
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+        this.currentIndex--;
+        
+        // Handle wrapping to end
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.totalCards - 1;
+            this.updateCarousel(false);
+            // Jump instantly to the real position after a brief moment
+            setTimeout(() => {
+                this.track.style.transition = 'none';
+                this.currentIndex = this.totalCards - 1;
+                this.updateCarousel(false);
+                setTimeout(() => {
+                    this.track.style.transition = 'transform 0.6s ease';
+                    this.isTransitioning = false;
+                }, 50);
+            }, 600);
         } else {
-            this.currentIndex = maxIndex; // Loop to end
+            this.updateCarousel(true);
         }
-        this.updateCarousel();
         this.resetTimer();
     },
 
-    updateCarousel: function() {
+    handleTransitionEnd: function() {
+        // When we reach the cloned cards (index >= totalCards), jump back to start
+        if (this.currentIndex >= this.totalCards) {
+            this.track.style.transition = 'none';
+            this.currentIndex = 0;
+            this.updateCarousel(false);
+            setTimeout(() => {
+                this.track.style.transition = 'transform 0.6s ease';
+                this.isTransitioning = false;
+            }, 50);
+        } else {
+            this.isTransitioning = false;
+        }
+    },
+
+    updateCarousel: function(withTransition = true) {
         // Calculate the translateX value
-        // Each card is 33.333% width + gap (2rem = ~1.33% per card for 3 cards)
         const cardWidthPercent = 100 / this.visibleCards; // 33.333%
         const translateValue = -this.currentIndex * cardWidthPercent;
         
+        if (!withTransition) {
+            this.track.style.transition = 'none';
+        }
         this.track.style.transform = `translateX(${translateValue}%)`;
+        if (!withTransition) {
+            // Force reflow
+            this.track.offsetHeight;
+            this.track.style.transition = 'transform 0.6s ease';
+        }
     }
 };
 
