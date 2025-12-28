@@ -207,25 +207,26 @@ html {
    =================================== */
 .menu-section {
   position: relative;
-  padding: 150px 0 100px;
+  padding: 50px 0 100px;
   background-color: var(--body-bg);
 }
 
 .oval-background {
   position: absolute;
-  top: -100px;
+  top: -150px;
   left: 50%;
   transform: translateX(-50%);
-  width: 150%;
-  height: 500px;
+  width: 100%;
+  height: 600px;
   background-color: var(--main);
   border-radius: 50%;
-  z-index: -1;
+  z-index: 0;
 }
 
 .menu-header {
   position: relative;
   z-index: 1;
+  padding-top: 80px;
 }
 
 .section-title {
@@ -247,16 +248,18 @@ html {
 /* Menu Carousel */
 .menu-carousel-wrapper {
   position: relative;
-  margin: 80px 0;
-  height: 400px;
+  margin: 60px 0 80px;
+  height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .menu-carousel {
   position: relative;
   width: 100%;
+  max-width: 1000px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -274,87 +277,89 @@ html {
   border-radius: 50%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 5px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Position 0 - Center (Active) */
+/* Position 0 - Center (Active) - Bottom center of arc */
 .menu-item[data-position="0"] {
   z-index: 10;
-  transform: translate(-50%, -50%) scale(1);
   left: 50%;
-  top: 50%;
+  bottom: 0;
+  transform: translateX(-50%) scale(1);
   opacity: 1;
   filter: grayscale(0%);
 }
 
 .menu-item[data-position="0"] img {
-  width: 250px;
-  height: 250px;
+  width: 220px;
+  height: 220px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-width: 6px;
 }
 
-/* Position 1 - Right */
+/* Position 1 - Right side of arc */
 .menu-item[data-position="1"] {
-  z-index: 5;
+  z-index: 8;
   left: 65%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0.7);
-  opacity: 0.6;
-  filter: grayscale(20%);
+  bottom: 80px;
+  transform: translateX(-50%) scale(0.75);
+  opacity: 0.8;
+  filter: grayscale(10%);
 }
 
 .menu-item[data-position="1"] img {
-  width: 180px;
-  height: 180px;
+  width: 170px;
+  height: 170px;
 }
 
-/* Position 2 - Far Right */
+/* Position 2 - Far right of arc */
 .menu-item[data-position="2"] {
-  z-index: 3;
+  z-index: 6;
   left: 80%;
-  top: 55%;
-  transform: translate(-50%, -50%) scale(0.55);
-  opacity: 0.4;
-  filter: grayscale(40%);
-}
-
-.menu-item[data-position="2"] img {
-  width: 150px;
-  height: 150px;
-}
-
-/* Position -1 - Left */
-.menu-item[data-position="-1"] {
-  z-index: 5;
-  left: 35%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0.7);
+  bottom: 140px;
+  transform: translateX(-50%) scale(0.6);
   opacity: 0.6;
   filter: grayscale(20%);
 }
 
-.menu-item[data-position="-1"] img {
-  width: 180px;
-  height: 180px;
+.menu-item[data-position="2"] img {
+  width: 140px;
+  height: 140px;
 }
 
-/* Position -2 - Far Left */
+/* Position -1 - Left side of arc */
+.menu-item[data-position="-1"] {
+  z-index: 8;
+  left: 35%;
+  bottom: 80px;
+  transform: translateX(-50%) scale(0.75);
+  opacity: 0.8;
+  filter: grayscale(10%);
+}
+
+.menu-item[data-position="-1"] img {
+  width: 170px;
+  height: 170px;
+}
+
+/* Position -2 - Far left of arc */
 .menu-item[data-position="-2"] {
-  z-index: 3;
+  z-index: 6;
   left: 20%;
-  top: 55%;
-  transform: translate(-50%, -50%) scale(0.55);
-  opacity: 0.4;
-  filter: grayscale(40%);
+  bottom: 140px;
+  transform: translateX(-50%) scale(0.6);
+  opacity: 0.6;
+  filter: grayscale(20%);
 }
 
 .menu-item[data-position="-2"] img {
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
 }
 
 .carousel-nav {
   position: absolute;
-  background-color: var(--secondary);
+  background-color: rgba(255, 255, 255, 0.9);
   color: var(--primary);
   border: none;
   width: 50px;
@@ -366,20 +371,23 @@ html {
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 20;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .carousel-nav:hover {
-  background-color: var(--primary);
-  color: var(--white);
-  transform: scale(1.1);
+  background-color: var(--secondary);
+  color: var(--primary);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-nav.prev {
-  left: 10%;
+  left: 5%;
 }
 
 .carousel-nav.next {
-  right: 10%;
+  right: 5%;
 }
 
 .carousel-nav i {
@@ -700,33 +708,47 @@ html {
     font-size: 2.5rem;
   }
   
+  .oval-background {
+    height: 500px;
+  }
+  
   .menu-carousel-wrapper {
-    height: 350px;
+    height: 300px;
   }
   
   .menu-item[data-position="0"] img {
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
   }
   
   .menu-item[data-position="1"] img,
   .menu-item[data-position="-1"] img {
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
   }
   
   .menu-item[data-position="2"] img,
   .menu-item[data-position="-2"] img {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
+  }
+  
+  .menu-item[data-position="1"],
+  .menu-item[data-position="-1"] {
+    bottom: 60px;
+  }
+  
+  .menu-item[data-position="2"],
+  .menu-item[data-position="-2"] {
+    bottom: 110px;
   }
   
   .carousel-nav.prev {
-    left: 5%;
+    left: 2%;
   }
   
   .carousel-nav.next {
-    right: 5%;
+    right: 2%;
   }
   
   .dish-actions {
@@ -765,22 +787,35 @@ html {
     text-align: center;
   }
   
-  .menu-carousel-wrapper {
-    height: 300px;
+  .oval-background {
+    height: 450px;
   }
   
-  /* Mobile: Show only center item */
-  .menu-item[data-position="1"],
+  .menu-carousel-wrapper {
+    height: 250px;
+  }
+  
+  /* Mobile: Show only center and adjacent items */
   .menu-item[data-position="2"],
-  .menu-item[data-position="-1"],
   .menu-item[data-position="-2"] {
     opacity: 0 !important;
     pointer-events: none;
   }
   
   .menu-item[data-position="0"] img {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
+  }
+  
+  .menu-item[data-position="1"] img,
+  .menu-item[data-position="-1"] img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .menu-item[data-position="1"],
+  .menu-item[data-position="-1"] {
+    bottom: 50px;
   }
   
   .carousel-nav {
