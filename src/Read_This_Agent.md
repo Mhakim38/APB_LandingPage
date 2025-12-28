@@ -143,17 +143,25 @@
 
 #### Implementation Details (Current)
 
-* **Circular Rotation**: All 5 dishes visible in oval/circular arrangement
+* **Arc Positioning**: All 5 dishes positioned along the oval curve
+  * Dishes are **within** the main-colored oval background
+  * Center dish at bottom center of arc (lowest point)
+  * Side dishes rise along the curve (higher as they move outward)
+  * Creates natural arc/curve pattern following oval shape
 * **Position System**: Uses data-position attributes (-2, -1, 0, 1, 2)
-  * Position 0 (center): Full size (250px), opacity 1, no grayscale
-  * Position ±1 (adjacent): 70% scale (180px), opacity 0.6, 20% grayscale
-  * Position ±2 (far sides): 55% scale (150px), opacity 0.4, 40% grayscale
-* **Smooth Transitions**: 0.6s cubic-bezier easing for natural movement
+  * Position 0 (center): Bottom center, full size (220px), opacity 1, no grayscale
+  * Position ±1 (adjacent): 75% scale (170px), positioned higher along arc, opacity 0.8
+  * Position ±2 (far sides): 60% scale (140px), highest points on arc, opacity 0.6
+* **Visual Design**:
+  * White borders on dishes for visibility
+  * Smooth transitions with 0.6s cubic-bezier easing
+  * Z-index layering for depth effect
+  * Grayscale filter decreases toward edges
 * **Interactive**: Click any dish to rotate it to center
 * **Responsive**:
-  * Desktop: All 5 dishes visible in circular layout
-  * Tablet: Reduced sizes but maintains circular pattern
-  * Mobile: Shows only center dish, arrows navigate
+  * Desktop: All 5 dishes visible in arc layout
+  * Tablet: Reduced sizes, maintains arc curve
+  * Mobile: Center + adjacent dishes only, far dishes hidden
 
 ---
 
