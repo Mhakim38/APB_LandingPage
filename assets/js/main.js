@@ -185,7 +185,8 @@ const feedbackCarousel = {
 
     updateCarousel: function() {
         // Calculate the translateX value
-        const cardWidthPercent = 100 / this.visibleCards; // 33.333%
+        // Each card is (100% - total gap) / 3, where total gap is 2rem * 2 = 4rem
+        const cardWidthPercent = (100 / 3); // Each card takes up 1/3 of the width including proportional gaps
         const translateValue = -this.currentIndex * cardWidthPercent;
         
         this.track.style.transform = `translateX(${translateValue}%)`;
