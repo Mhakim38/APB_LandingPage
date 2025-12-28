@@ -75,14 +75,21 @@ const menuCarousel = {
             const dishIndex = index % this.totalDishes;
             
             // Calculate relative position from current index
-            // We have 10 items (2 sets of 5) to create circular effect
             let position = index - this.currentIndex;
             
             // Normalize position to range [-4, 4]
-            if (position > 5) {
-                position = position - 10;
-            } else if (position < -4) {
-                position = position + 10;
+            // Ensure only one dish is at position 0
+            while (position > 4) {
+                position -= this.items.length;
+            }
+            while (position < -4) {
+                position += this.items.length;
+            }
+            
+            // Only show positions -2 to 2 (5 visible dishes)
+            // Hide positions outside this range
+            if (Math.abs(position) > 4) {
+                position = 5; // Set to out of range position
             }
             
             // Set position attribute for CSS targeting
