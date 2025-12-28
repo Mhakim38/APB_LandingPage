@@ -657,6 +657,9 @@ html {
   transition: box-shadow 0.3s ease;
   width: calc((100% - 4rem) / 3);
   flex-shrink: 0;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
 }
 
 .feedback-card:hover {
