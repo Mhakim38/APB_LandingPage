@@ -74,7 +74,7 @@
 
 * Color: `--main`
 * Full screen height (`100vh`)
-* Rounded bottom edges (as per reference)
+* **Flat rectangular background** (no rounded edges)
 
 ### Layout
 
@@ -107,14 +107,11 @@
 
 ### Transition Design
 
-* Large **oval-shaped background**
+* **Half-oval shaped background** at the top of menu section
 * Same color as Hero (`--main`)
-* Visually connects Hero → Menu
-* Oval uses:
-
-  ```css
-  z-index: -1;
-  ```
+* Visually connects Hero → Menu seamlessly
+* Uses CSS: `border-radius: 0 0 50% 50% / 0 0 100% 100%;` to create bottom-rounded half-oval
+* Dishes positioned along the curved edge of the half-oval
 
 ### Title
 
@@ -143,25 +140,25 @@
 
 #### Implementation Details (Current)
 
-* **Arc Positioning**: All 5 dishes positioned along the oval curve
-  * Dishes are **within** the main-colored oval background
-  * Center dish at bottom center of arc (lowest point)
-  * Side dishes rise along the curve (higher as they move outward)
-  * Creates natural arc/curve pattern following oval shape
+* **Half-Oval Arc Positioning**: All 5 dishes positioned along the half-oval curve
+  * Half-oval is **at the top of menu section** (not above it)
+  * Hero section has flat rectangular background in main color
+  * Half-oval seamlessly connects hero to menu section
+  * Dishes positioned along the curved bottom edge of the half-oval
 * **Position System**: Uses data-position attributes (-2, -1, 0, 1, 2)
   * Position 0 (center): Bottom center, full size (220px), opacity 1, no grayscale
-  * Position ±1 (adjacent): 75% scale (170px), positioned higher along arc, opacity 0.8
-  * Position ±2 (far sides): 60% scale (140px), highest points on arc, opacity 0.6
+  * Position ±1 (adjacent): 75% scale (170px), positioned higher along arc curve
+  * Position ±2 (far sides): 60% scale (140px), highest points on curved edge
 * **Visual Design**:
-  * White borders on dishes for visibility
+  * White borders on dishes for visibility against main color background
   * Smooth transitions with 0.6s cubic-bezier easing
   * Z-index layering for depth effect
-  * Grayscale filter decreases toward edges
+  * Grayscale filter increases toward edges
 * **Interactive**: Click any dish to rotate it to center
 * **Responsive**:
-  * Desktop: All 5 dishes visible in arc layout
-  * Tablet: Reduced sizes, maintains arc curve
-  * Mobile: Center + adjacent dishes only, far dishes hidden
+  * Desktop: All 5 dishes visible along half-oval arc
+  * Tablet: Reduced sizes, maintains half-oval curve
+  * Mobile: Center + adjacent dishes only (3 visible)
 
 ---
 
