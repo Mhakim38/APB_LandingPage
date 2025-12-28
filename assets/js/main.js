@@ -15,6 +15,7 @@ window.addEventListener('scroll', function() {
 // ===================================
 const menuCarousel = {
     currentIndex: 0,
+    totalDishes: 5, // Only 5 unique dishes
     items: [],
     dishes: [
         {
@@ -52,7 +53,7 @@ const menuCarousel = {
         this.items.forEach((item, index) => {
             item.addEventListener('click', () => {
                 const position = parseInt(item.getAttribute('data-position'));
-                if (position !== 0) {
+                if (position !== 0 && Math.abs(position) <= 2) {
                     // Calculate how many steps to rotate
                     if (position > 0) {
                         for (let i = 0; i < position; i++) {
@@ -69,17 +70,19 @@ const menuCarousel = {
     },
 
     updateCarousel: function() {
-        const totalItems = this.items.length;
-        
         this.items.forEach((item, index) => {
+            // Get the dish index (repeating pattern for duplicates)
+            const dishIndex = index % this.totalDishes;
+            
             // Calculate relative position from current index
+            // We have 10 items (2 sets of 5) to create circular effect
             let position = index - this.currentIndex;
             
-            // Normalize position to range [-2, 2]
-            if (position > 2) {
-                position = position - totalItems;
-            } else if (position < -2) {
-                position = position + totalItems;
+            // Normalize position to range [-4, 4]
+            if (position > 5) {
+                position = position - 10;
+            } else if (position < -4) {
+                position = position + 10;
             }
             
             // Set position attribute for CSS targeting
@@ -90,7 +93,9 @@ const menuCarousel = {
     },
 
     updateDetails: function() {
-        const dish = this.dishes[this.currentIndex];
+        // Get the actual dish index (0-4)
+        const dishIndex = this.currentIndex % this.totalDishes;
+        const dish = this.dishes[dishIndex];
         document.getElementById('dishName').textContent = dish.name;
         document.getElementById('dishDescription').textContent = dish.description;
         document.getElementById('dishPrice').textContent = dish.price;
