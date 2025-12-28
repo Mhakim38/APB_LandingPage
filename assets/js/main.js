@@ -124,41 +124,48 @@ document.addEventListener('DOMContentLoaded', function() {
 // Feedback Carousel
 // ===================================
 const feedbackCarousel = {
+    currentPage: 0,
+    pages: [],
+    dots: [],
+
     init: function() {
-        const carousel = document.getElementById('feedbackCarousel');
+        this.pages = document.querySelectorAll('.feedback-page');
+        this.dots = document.querySelectorAll('.feedback-dot');
         
-        // Add touch/mouse drag support for smooth horizontal scrolling
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        carousel.addEventListener('mousedown', (e) => {
-            isDown = true;
-            carousel.style.cursor = 'grabbing';
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
+        // Add click handlers to dots
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                this.goToPage(index);
+            });
         });
 
-        carousel.addEventListener('mouseleave', () => {
-            isDown = false;
-            carousel.style.cursor = 'grab';
+        // Show first page
+        this.showPage(0);
+    },
+
+    goToPage: function(pageIndex) {
+        if (pageIndex >= 0 && pageIndex < this.pages.length) {
+            this.currentPage = pageIndex;
+            this.showPage(pageIndex);
+        }
+    },
+
+    showPage: function(pageIndex) {
+        // Hide all pages
+        this.pages.forEach(page => {
+            page.classList.remove('active');
         });
 
-        carousel.addEventListener('mouseup', () => {
-            isDown = false;
-            carousel.style.cursor = 'grab';
-        });
+        // Show selected page
+        this.pages[pageIndex].classList.add('active');
 
-        carousel.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2;
-            carousel.scrollLeft = scrollLeft - walk;
+        // Update dots
+        this.dots.forEach((dot, index) => {
+            dot.classList.remove('active');
+            if (index === pageIndex) {
+                dot.classList.add('active');
+            }
         });
-
-        // Set initial cursor
-        carousel.style.cursor = 'grab';
     }
 };
 
