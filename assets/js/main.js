@@ -18,39 +18,39 @@ const menuCarousel = {
     items: [],
     dishes: [
         {
-            name: "Ayam Penyet Original",
-            description: "Traditional smashed fried chicken with our signature sambal, served with steamed rice, fresh vegetables, and condiments.",
-            price: "RM 12.90"
+            name: "Ayam Penyet Best",
+            description: "Our signature dish featuring perfectly fried chicken smashed to tender perfection, topped with our legendary house-made sambal that delivers the perfect kick. Served with fragrant steamed rice, crispy fried tofu, golden tempeh, fresh cucumber slices, and traditional Indonesian condiments for an authentic taste experience.",
+            price: "RM 14.90"
         },
         {
-            name: "Ayam Penyet Extra Spicy",
-            description: "For spice lovers! Our classic Ayam Penyet with extra hot sambal that will set your taste buds on fire.",
-            price: "RM 13.90"
-        },
-        {
-            name: "Ayam Penyet Combo",
-            description: "Our signature smashed fried chicken served with fragrant rice, fresh vegetables, crispy tempeh, tofu, and our legendary sambal that packs the perfect punch of flavor and heat.",
-            price: "RM 15.90"
-        },
-        {
-            name: "Ayam Penyet Special",
-            description: "Premium cut chicken with our special blend of spices, served with extra portions of tempeh, tofu, and vegetables.",
+            name: "Nasi Lemak Penyet",
+            description: "A fusion of Malaysian and Indonesian classics! Aromatic coconut-infused rice served with our signature smashed fried chicken, house-made sambal, perfectly boiled egg, crunchy roasted peanuts, crispy fried anchovies, and fresh vegetables. A complete meal that combines the best of both culinary worlds.",
             price: "RM 17.90"
         },
         {
-            name: "Ayam Penyet Family Pack",
-            description: "Perfect for family dining! 4 pieces of Ayam Penyet with rice, vegetables, and all the condiments. Feeds 3-4 people.",
-            price: "RM 45.90"
+            name: "Ikan Bawal Penyet",
+            description: "Premium white pomfret fish marinated with authentic Indonesian spices, deep-fried to golden perfection, then smashed to enhance the flavors. Accompanied by our signature fiery sambal, crispy fried tofu, golden tempeh, steamed rice, and a medley of fresh vegetables. A seafood lover's delight with bold, traditional flavors.",
+            price: "RM 17.90"
         },
         {
-            name: "Ayam Penyet Deluxe",
-            description: "Our most luxurious offering! Premium chicken with special marinade, extra sides, and chef's special sambal blend.",
-            price: "RM 19.90"
+            name: "Lele Penyet",
+            description: "Fresh catfish expertly marinated in a blend of traditional Indonesian spices, deep-fried until crispy on the outside yet tender inside, then smashed for maximum flavor absorption. Served with our legendary sambal, crispy tofu, golden tempeh, fragrant steamed rice, and fresh garden vegetables. An authentic Indonesian favorite that's both hearty and satisfying.",
+            price: "RM 12.90"
         },
         {
-            name: "Ayam Penyet Jumbo",
-            description: "Extra large portion for the hearty appetite! Double the chicken, double the flavor, with all the traditional accompaniments.",
-            price: "RM 22.90"
+            name: "Bakso Kuah",
+            description: "Comforting Indonesian meatball soup featuring juicy, hand-made beef balls swimming in a rich, aromatic broth infused with herbs and spices. Choose your favorite noodles—silky Sohun (glass noodles), chewy Mee (yellow noodles), or delicate Bihun (rice vermicelli). Topped with fresh bok choy, fried shallots, and served with crispy crackers on the side. Perfect for warming the soul!",
+            price: "RM 11.90"
+        },
+        {
+            name: "Tauhu Tempe Penyet",
+            description: "A delicious vegetarian option! Golden-fried tofu (bean curd) and tempeh marinated in aromatic Indonesian spices, then smashed to perfection to absorb our signature sambal's bold flavors. Served with fragrant steamed rice, fresh cucumber, cabbage, and tomatoes. Packed with protein and authentic taste that even meat lovers will enjoy!",
+            price: "RM 8.90"
+        },
+        {
+            name: "Rendang Daging Padang Asli",
+            description: "Authentic Padang-style beef rendang slow-cooked to perfection in aromatic coconut milk and a complex blend of traditional spices including lemongrass, galangal, turmeric, and chilies. The beef is simmered for hours until tender and infused with rich, deep flavors, then cooked until the sauce reduces to a thick, dark coating. Served with steamed rice for a truly authentic Indonesian culinary experience that melts in your mouth.",
+            price: "RM 14.90"
         }
     ],
 
