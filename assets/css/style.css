@@ -507,14 +507,12 @@ html {
   transition: all 0.3s ease;
   z-index: 20;
   bottom: 110px;
-  transform: translateY(50%);
   pointer-events: auto;
 }
 
 .carousel-nav:hover {
   background-color: var(--secondary);
   color: var(--primary);
-  transform: translateY(50%) scale(1.1);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
