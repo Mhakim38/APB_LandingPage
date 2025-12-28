@@ -636,16 +636,40 @@ html {
 .feedback-carousel {
   position: relative;
   overflow: hidden;
+  min-height: 400px;
 }
 
 .feedback-page {
-  display: none;
+  position: absolute;
+  width: 100%;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: translateX(100%);
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .feedback-page.active {
-  display: block;
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.feedback-page.slide-out-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.feedback-page.slide-in-right {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.feedback-page.slide-out-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.feedback-page.slide-in-left {
+  transform: translateX(0);
   opacity: 1;
 }
 
@@ -702,6 +726,44 @@ html {
 .feedback-dot.active {
   background-color: var(--secondary);
   transform: scale(1.3);
+}
+
+/* Feedback Navigation Arrows */
+.feedback-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.feedback-nav:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-nav.prev {
+  left: -25px;
+}
+
+.feedback-nav.next {
+  right: -25px;
+}
+
+.feedback-nav i {
+  font-size: 1.5rem;
 }
 
 /* ===================================
