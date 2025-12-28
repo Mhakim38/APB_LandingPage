@@ -211,9 +211,10 @@
 
 #### Implementation Details (Current - Bootstrap 4 Carousel)
 
-* **Bootstrap 4 Native Carousel**: Uses Bootstrap 4's `.carousel` component
-  * `data-ride="carousel"` for auto-rotation
-  * `data-interval="5000"` for 5-second intervals
+* **Bootstrap 5 Native Carousel**: Uses Bootstrap 5's `.carousel` component
+  * `data-bs-ride="carousel"` for auto-rotation (Bootstrap 5 syntax)
+  * `data-bs-interval="5000"` for 5-second intervals
+  * `data-bs-slide="prev"` and `data-bs-slide="next"` for navigation controls
 * **Sliding Window**: 6 slides total, each showing 3 feedback cards
   * Slide 1: Cards 1, 2, 3 (Ahmad, Sarah, Muhamad)
   * Slide 2: Cards 2, 3, 4 (Sarah, Muhamad, Nurul)
