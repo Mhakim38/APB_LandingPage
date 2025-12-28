@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayam Penyet Best - Mayang Mall Terengganu</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.png" alt="APB Logo" height="50" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-text" style="display:none;">APB</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#feedback">Feedback</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-book-table" href="#book">Book Table</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Ayam Penyet <span class="highlight">Best</span></h1>
+                    <h2 class="hero-subtitle">Mayang Mall</h2>
+                    <h3 class="hero-location">Terengganu</h3>
+                    <p class="hero-description">Experience the authentic taste of Indonesian cuisine with our signature Ayam Penyet, perfectly smashed and served with our special sambal. A culinary journey that brings together tradition and flavor in every bite.</p>
+                    <div class="hero-buttons">
+                        <a href="#menu" class="btn btn-menu">Menu</a>
+                        <a href="#feedback" class="btn btn-feedback">Feedback</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="assets/images/hero-dish.jpg" alt="Ayam Penyet" class="img-fluid" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2224%22 fill=%22%23999%22%3EAyam Penyet%3C/text%3E%3C/svg%3E';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Menu Section with Oval Transition -->
+    <section id="menu" class="menu-section">
+        <div class="oval-background"></div>
+        
+        <div class="container">
+            <!-- Menu Title -->
+            <div class="text-center mb-5 menu-header">
+                <h2 class="section-title">Our <span class="menu-highlight">Menu</span></h2>
+                <p class="section-subtitle">Main Dish</p>
+            </div>
+
+            <!-- Menu Carousel -->
+            <div class="menu-carousel-wrapper">
+                <button class="carousel-nav prev" onclick="menuCarousel.prev()">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                
+                <div class="menu-carousel" id="menuCarousel">
+                    <div class="menu-item" data-index="0">
+                        <img src="assets/images/dish1.jpg" alt="Ayam Penyet Original" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23999%22%3EDish 1%3C/text%3E%3C/svg%3E';">
+                    </div>
+                    <div class="menu-item" data-index="1">
+                        <img src="assets/images/dish2.jpg" alt="Ayam Penyet Extra Spicy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23999%22%3EDish 2%3C/text%3E%3C/svg%3E';">
+                    </div>
+                    <div class="menu-item active" data-index="2">
+                        <img src="assets/images/dish3.jpg" alt="Ayam Penyet Combo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23999%22%3EDish 3%3C/text%3E%3C/svg%3E';">
+                    </div>
+                    <div class="menu-item" data-index="3">
+                        <img src="assets/images/dish4.jpg" alt="Ayam Penyet Special" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23999%22%3EDish 4%3C/text%3E%3C/svg%3E';">
+                    </div>
+                    <div class="menu-item" data-index="4">
+                        <img src="assets/images/dish5.jpg" alt="Ayam Penyet Family Pack" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2218%22 fill=%22%23999%22%3EDish 5%3C/text%3E%3C/svg%3E';">
+                    </div>
+                </div>
+                
+                <button class="carousel-nav next" onclick="menuCarousel.next()">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Menu Detail Area -->
+            <div class="menu-detail">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="dish-name" id="dishName">Ayam Penyet Combo</h3>
+                        <p class="dish-description" id="dishDescription">Our signature smashed fried chicken served with fragrant rice, fresh vegetables, crispy tempeh, tofu, and our legendary sambal that packs the perfect punch of flavor and heat.</p>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <div class="dish-actions">
+                            <a href="#book" class="btn btn-book-table me-2">Book Table</a>
+                            <a href="#feedback" class="btn btn-feedback-alt me-3">Feedback</a>
+                            <h2 class="dish-price" id="dishPrice">RM 15.90</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="feedback-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title-light">What They Say ?</h2>
+                <p class="section-subtitle-light">Real experiences from our valued customers who have tasted the authentic flavors of our Ayam Penyet</p>
+            </div>
+
+            <!-- Feedback Carousel -->
+            <div class="feedback-carousel-wrapper">
+                <div class="feedback-carousel" id="feedbackCarousel">
+                    <div class="feedback-card">
+                        <p class="feedback-text">"The best Ayam Penyet I've ever had! The sambal is incredible and the chicken is always perfectly crispy. This is my go-to place for authentic Indonesian food."</p>
+                        <h5 class="feedback-name">Ahmad Ibrahim</h5>
+                        <p class="feedback-position">Local Guide</p>
+                    </div>
+                    <div class="feedback-card">
+                        <p class="feedback-text">"Amazing flavors and generous portions. The atmosphere is great and the staff are very friendly. Highly recommended for anyone craving authentic Indonesian cuisine!"</p>
+                        <h5 class="feedback-name">Sarah Lee</h5>
+                        <p class="feedback-position">Food Blogger</p>
+                    </div>
+                    <div class="feedback-card">
+                        <p class="feedback-text">"I've been coming here for years and the quality never disappoints. The extra spicy sambal is my favorite! Great value for money and always consistent."</p>
+                        <h5 class="feedback-name">Muhamad Ismail</h5>
+                        <p class="feedback-position">Regular Customer</p>
+                    </div>
+                    <div class="feedback-card">
+                        <p class="feedback-text">"Perfect place for family dining. Kids love it too! The combo meals are great for sharing and everything tastes authentic and delicious."</p>
+                        <h5 class="feedback-name">Nurul Aini</h5>
+                        <p class="feedback-position">Local Guide</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Dots -->
+                <div class="feedback-dots" id="feedbackDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book a Table Section -->
+    <section id="book" class="book-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title-dark">Book a Table</h2>
+                <p class="section-subtitle-dark">Reserve your spot and enjoy the authentic taste of Ayam Penyet</p>
+            </div>
+
+            <div class="booking-form-wrapper">
+                <form id="bookingForm">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Your name" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="pax" class="form-label">Number of Guests (Pax)</label>
+                                <input type="number" class="form-control" id="pax" placeholder="2" min="1" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="date" class="form-label">Date & Time</label>
+                                <input type="datetime-local" class="form-control" id="date" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-4 h-100 d-flex flex-column">
+                                <label for="message" class="form-label">Special Request</label>
+                                <textarea class="form-control flex-grow-1" id="message" rows="8" placeholder="I want Ayam Penyet Extra spicy"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-submit">Submit Reservation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo mb-3">
+                        <img src="assets/images/logo-white.png" alt="APB Logo" height="50" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="logo-text-white" style="display:none;">APB</span>
+                    </div>
+                    <p class="footer-description">Bringing you the authentic taste of Indonesian Ayam Penyet since 2016. Experience the perfect blend of tradition and flavor in every dish.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="footer-contact">
+                        <p><i class="bi bi-geo-alt-fill"></i> Mayang Mall, Kuala Terengganu, Terengganu, Malaysia</p>
+                        <p><i class="bi bi-telephone-fill"></i> +60 9-123 4567</p>
+                        <p><i class="bi bi-envelope-fill"></i> info@ayampenyetbest.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="footer-title">Social Media</h5>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-bottom">
+                <p>&copy; 2016–2025 Ayam Penyet Bagus Sdn Bhd 903834-T</p>
+                <p>Design by Santai Kuppi</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
