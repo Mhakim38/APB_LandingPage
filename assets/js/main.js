@@ -121,35 +121,81 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===================================
-// Feedback Carousel (Bootstrap 5)
+// Feedback Carousel (Custom Sliding Window)
 // ===================================
-// Initialize Bootstrap carousel
-const feedbackCarouselElement = document.getElementById('feedbackCarousel');
-if (feedbackCarouselElement) {
-    const feedbackCarousel = new bootstrap.Carousel(feedbackCarouselElement, {
-        interval: 5000,
-        ride: 'carousel',
-        wrap: true
-    });
+const feedbackCarousel = {
+    currentIndex: 0,
+    cards: [],
+    track: null,
+    totalCards: 6,
+    visibleCards: 3,
+    autoRotateTimer: null,
+    autoRotateInterval: 5000,
 
-    // Add click handlers to prevent default scroll behavior
-    const feedbackPrevBtn = document.getElementById('feedbackPrevBtn');
-    const feedbackNextBtn = document.getElementById('feedbackNextBtn');
+    init: function() {
+        this.cards = document.querySelectorAll('.feedback-card');
+        this.track = document.getElementById('feedbackCarouselTrack');
+        const prevBtn = document.getElementById('feedbackPrev');
+        const nextBtn = document.getElementById('feedbackNext');
+        
+        // Add click handlers to arrows
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.prev());
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.next());
+        }
 
-    if (feedbackPrevBtn) {
-        feedbackPrevBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            feedbackCarousel.prev();
-        });
+        // Initialize position
+        this.updateCarousel();
+        
+        // Start auto-rotation
+        this.startAutoRotate();
+    },
+
+    startAutoRotate: function() {
+        this.stopAutoRotate();
+        this.autoRotateTimer = setInterval(() => {
+            this.next();
+        }, this.autoRotateInterval);
+    },
+
+    stopAutoRotate: function() {
+        if (this.autoRotateTimer) {
+            clearInterval(this.autoRotateTimer);
+            this.autoRotateTimer = null;
+        }
+    },
+
+    resetTimer: function() {
+        this.startAutoRotate();
+    },
+
+    next: function() {
+        this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+        this.updateCarousel();
+        this.resetTimer();
+    },
+
+    prev: function() {
+        this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+        this.updateCarousel();
+        this.resetTimer();
+    },
+
+    updateCarousel: function() {
+        // Calculate the translateX value
+        const cardWidthPercent = 100 / this.visibleCards; // 33.333%
+        const translateValue = -this.currentIndex * cardWidthPercent;
+        
+        this.track.style.transform = `translateX(${translateValue}%)`;
     }
+};
 
-    if (feedbackNextBtn) {
-        feedbackNextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            feedbackCarousel.next();
-        });
-    }
-}
+// Initialize feedback carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    feedbackCarousel.init();
+});
 
 // ===================================
 // Booking Form Handler
