@@ -15,7 +15,6 @@ window.addEventListener('scroll', function() {
 // ===================================
 const menuCarousel = {
     currentIndex: 0,
-    totalDishes: 5, // Only 5 unique dishes
     items: [],
     dishes: [
         {
@@ -71,25 +70,14 @@ const menuCarousel = {
 
     updateCarousel: function() {
         this.items.forEach((item, index) => {
-            // Get the dish index (repeating pattern for duplicates)
-            const dishIndex = index % this.totalDishes;
-            
             // Calculate relative position from current index
             let position = index - this.currentIndex;
             
-            // Normalize position to range [-4, 4]
-            // Ensure only one dish is at position 0
-            while (position > 4) {
-                position -= this.items.length;
-            }
-            while (position < -4) {
-                position += this.items.length;
-            }
-            
-            // Only show positions -2 to 2 (5 visible dishes)
-            // Hide positions outside this range
-            if (Math.abs(position) > 4) {
-                position = 5; // Set to out of range position
+            // Normalize position to range [-2, 2]
+            if (position > 2) {
+                position = position - this.items.length;
+            } else if (position < -2) {
+                position = position + this.items.length;
             }
             
             // Set position attribute for CSS targeting
@@ -100,9 +88,7 @@ const menuCarousel = {
     },
 
     updateDetails: function() {
-        // Get the actual dish index (0-4)
-        const dishIndex = this.currentIndex % this.totalDishes;
-        const dish = this.dishes[dishIndex];
+        const dish = this.dishes[this.currentIndex];
         document.getElementById('dishName').textContent = dish.name;
         document.getElementById('dishDescription').textContent = dish.description;
         document.getElementById('dishPrice').textContent = dish.price;
