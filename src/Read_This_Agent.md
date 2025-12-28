@@ -140,25 +140,28 @@
 
 #### Implementation Details (Current)
 
-* **Half-Oval Arc Positioning**: All 5 dishes positioned along the half-oval curve
-  * Half-oval is **at the top of menu section** (not above it)
-  * Hero section has flat rectangular background in main color
-  * Half-oval seamlessly connects hero to menu section
-  * Dishes positioned along the curved bottom edge of the half-oval
-* **Position System**: Uses data-position attributes (-2, -1, 0, 1, 2)
-  * Position 0 (center): Bottom center, full size (220px), opacity 1, no grayscale
-  * Position ±1 (adjacent): 75% scale (170px), positioned higher along arc curve
-  * Position ±2 (far sides): 60% scale (140px), highest points on curved edge
-* **Visual Design**:
-  * White borders on dishes for visibility against main color background
-  * Smooth transitions with 0.6s cubic-bezier easing
-  * Z-index layering for depth effect
-  * Grayscale filter increases toward edges
-* **Interactive**: Click any dish to rotate it to center
-* **Responsive**:
-  * Desktop: All 5 dishes visible along half-oval arc
-  * Tablet: Reduced sizes, maintains half-oval curve
-  * Mobile: Center + adjacent dishes only (3 visible)
+* **Full Circular Carousel**: 10 menu items total (2 complete sets of 5 dishes)
+  * Creates seamless infinite circular rotation
+  * Duplicate dishes maintain continuity during rotation
+* **Circular Positioning**: 
+  * Uses CSS `transform: rotate() translateY() rotate()` for circular arc
+  * Each position rotates 36 degrees (360° / 10 positions)
+  * Dishes arranged in complete circle around center point
+  * Visible dishes: bottom half of circle (positions -2 to 2)
+  * Hidden dishes: top half behind hero section (positions ±3, ±4)
+* **Z-Index Trick**:
+  * Oval background: `z-index: -1`
+  * Hidden dishes (behind hero): `opacity: 0`, `z-index: 0-1`
+  * Visible dishes: `z-index: 6-10` based on position
+  * Creates illusion of dishes disappearing behind hero section
+* **Position System**: Uses data-position attributes (-4 to 4)
+  * Position 0 (center): Bottom, full size (220px), opacity 1
+  * Position ±1: 36° rotation, 75% scale (170px), opacity 0.85
+  * Position ±2: 72° rotation, 60% scale (140px), opacity 0.65
+  * Position ±3: 108° rotation, hidden behind hero (opacity 0)
+  * Position ±4: 144° rotation, hidden behind hero (opacity 0)
+* **Interactive**: Click visible dishes to bring them to center
+* **Responsive**: Adjusts circle size and visible dishes per breakpoint
 
 ---
 
