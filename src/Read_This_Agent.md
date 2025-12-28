@@ -10,7 +10,7 @@
 ### Body & Base
 
 * **Body background:** `#FAFAFA` (white-ish, not pure white)
-* Use **Bootstrap 5**
+* Use **Bootstrap 5** for the grid system
 * Mobile-first, responsive
 * Clean, minimal, no inline CSS or JS
 * Separate files:
@@ -140,6 +140,20 @@
 
   * Left & Right arrow icons
 * Carousel sits visually **on top of oval**
+
+#### Implementation Details (Current)
+
+* **Circular Rotation**: All 5 dishes visible in oval/circular arrangement
+* **Position System**: Uses data-position attributes (-2, -1, 0, 1, 2)
+  * Position 0 (center): Full size (250px), opacity 1, no grayscale
+  * Position ±1 (adjacent): 70% scale (180px), opacity 0.6, 20% grayscale
+  * Position ±2 (far sides): 55% scale (150px), opacity 0.4, 40% grayscale
+* **Smooth Transitions**: 0.6s cubic-bezier easing for natural movement
+* **Interactive**: Click any dish to rotate it to center
+* **Responsive**:
+  * Desktop: All 5 dishes visible in circular layout
+  * Tablet: Reduced sizes but maintains circular pattern
+  * Mobile: Shows only center dish, arrows navigate
 
 ---
 
