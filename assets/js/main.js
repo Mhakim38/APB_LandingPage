@@ -221,8 +221,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Show success message
-            alert(`Thank you ${name}! Your reservation for ${pax} person(s) has been received. We'll contact you shortly to confirm your booking.`);
+            // TODO: Replace with actual WhatsApp number
+            const whatsappNumber = 'YOUR_PHONE_NUMBER'; // Format: 60123456789 (country code + number, no +)
+            
+            // Construct WhatsApp message
+            let whatsappMessage = `*New Reservation Request*\n\n`;
+            whatsappMessage += `Name: ${name}\n`;
+            whatsappMessage += `Number of People: ${pax}\n`;
+            whatsappMessage += `Date: ${date}`;
+            
+            if (message) {
+                whatsappMessage += `\n\nAdditional Message:\n${message}`;
+            }
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Redirect to WhatsApp
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
             
             // Reset form
             bookingForm.reset();
