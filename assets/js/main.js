@@ -172,13 +172,15 @@ const feedbackCarousel = {
     },
 
     next: function() {
-        this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+        const maxIndex = this.totalCards - this.visibleCards; // 6 - 3 = 3
+        this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1); // 0,1,2,3 then back to 0
         this.updateCarousel();
         this.resetTimer();
     },
 
     prev: function() {
-        this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+        const maxIndex = this.totalCards - this.visibleCards; // 6 - 3 = 3
+        this.currentIndex = (this.currentIndex - 1 + (maxIndex + 1)) % (maxIndex + 1);
         this.updateCarousel();
         this.resetTimer();
     },
