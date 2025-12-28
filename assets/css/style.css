@@ -308,7 +308,7 @@ html {
 /* Position 1 - Right side */
 .menu-item[data-position="1"] {
   z-index: 8;
-  left: 68%;
+  left: 73%;
   bottom: 100px;
   transform: translateX(-50%) scale(0.75);
   opacity: 0.85;
@@ -323,7 +323,7 @@ html {
 /* Position 2 - Far right */
 .menu-item[data-position="2"] {
   z-index: 6;
-  left: 85%;
+  left: 92%;
   bottom: 180px;
   transform: translateX(-50%) scale(0.6);
   opacity: 0.65;
@@ -338,7 +338,7 @@ html {
 /* Position -1 - Left side */
 .menu-item[data-position="-1"] {
   z-index: 8;
-  left: 32%;
+  left: 27%;
   bottom: 100px;
   transform: translateX(-50%) scale(0.75);
   opacity: 0.85;
@@ -353,7 +353,7 @@ html {
 /* Position -2 - Far left */
 .menu-item[data-position="-2"] {
   z-index: 6;
-  left: 15%;
+  left: 8%;
   bottom: 180px;
   transform: translateX(-50%) scale(0.6);
   opacity: 0.65;
