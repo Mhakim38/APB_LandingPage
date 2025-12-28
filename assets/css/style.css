@@ -553,48 +553,53 @@ html {
 
 /* Menu Detail Area */
 .menu-detail {
-  background-color: #1a1a1a;
+  background-color: transparent;
   border-radius: 30px;
   padding: 3rem;
   margin-top: 4rem;
-  color: var(--white);
+  color: var(--font-tertiary);
 }
 
 .dish-name {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--white);
+  color: var(--primary);
 }
 
 .dish-description {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #d0d0d0;
+  color: var(--font-tertiary);
 }
 
 .dish-actions {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
   gap: 1rem;
-  flex-wrap: wrap;
+}
+
+.dish-actions .btn-group {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .btn-feedback-alt {
-  background-color: var(--white);
-  color: var(--primary);
+  background-color: var(--primary);
+  color: var(--white);
   padding: 0.6rem 1.8rem;
   border-radius: 50px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 2px solid var(--white);
+  border: 2px solid var(--primary);
 }
 
 .btn-feedback-alt:hover {
-  background-color: transparent;
-  color: var(--white);
+  background-color: var(--secondary);
+  color: var(--primary);
+  border-color: var(--secondary);
 }
 
 .dish-price {
@@ -608,20 +613,20 @@ html {
    Feedback Section
    =================================== */
 .feedback-section {
-  background-color: #1a1a1a;
+  background-color: var(--white);
   padding: 100px 0;
-  color: var(--white);
+  color: var(--font-tertiary);
 }
 
 .section-title-light {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--primary);
 }
 
 .section-subtitle-light {
   font-size: 1.1rem;
-  color: #d0d0d0;
+  color: var(--muted);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -642,11 +647,12 @@ html {
   border-radius: 20px;
   padding: 2rem;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .feedback-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .feedback-text {
