@@ -214,12 +214,15 @@
 * **Bootstrap 4 Native Carousel**: Uses Bootstrap 4's `.carousel` component
   * `data-ride="carousel"` for auto-rotation
   * `data-interval="5000"` for 5-second intervals
-* **Sliding Window**: 4 slides total, each showing 3 feedback cards
+* **Sliding Window**: 6 slides total, each showing 3 feedback cards
   * Slide 1: Cards 1, 2, 3 (Ahmad, Sarah, Muhamad)
   * Slide 2: Cards 2, 3, 4 (Sarah, Muhamad, Nurul)
   * Slide 3: Cards 3, 4, 5 (Muhamad, Nurul, Tan)
   * Slide 4: Cards 4, 5, 6 (Nurul, Tan, Siti)
-  * Creates sliding window effect with overlapping cards
+  * Slide 5: Cards 5, 6, 1 (Tan, Siti, Ahmad) - wrapping back
+  * Slide 6: Cards 6, 1, 2 (Siti, Ahmad, Sarah) - wrapping back
+  * Each button click advances by ONE card position
+  * Creates true infinite loop with seamless wrapping
 * **Navigation Controls**:
   * Circular arrow buttons positioned at carousel center
   * Custom styled with white background and primary color icons
@@ -424,9 +427,9 @@ Commit messages must be **clear, senior-level, and descriptive**.
 **Behavior:**
 
 * Shows 3 feedback cards at a time on desktop
-* Slides show overlapping content (sliding window pattern)
-* Loops infinitely through all 4 slides automatically
-* Auto-rotates every 5 seconds
+* Each navigation click moves by ONE card position (sliding window)
+* Slides 5 and 6 wrap cards back to beginning for infinite loop
+* Auto-rotates every 5 seconds through all 6 slides
 * Smooth Bootstrap slide transitions
 * Responsive design (single column on mobile)
 
