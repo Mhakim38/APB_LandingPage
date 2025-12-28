@@ -580,6 +580,29 @@ html {
   gap: 1rem;
 }
 
+.dish-actions .btn {
+  white-space: nowrap;
+}
+
+.dish-actions > a {
+  display: inline-block;
+}
+
+/* Button container for side-by-side layout */
+.dish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dish-actions .dish-price {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 .btn-feedback-alt {
   background-color: var(--primary);
   color: var(--white);
