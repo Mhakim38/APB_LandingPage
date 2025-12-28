@@ -124,14 +124,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Feedback Carousel
 // ===================================
 const feedbackCarousel = {
-    currentPage: 0,
-    pages: [],
+    currentIndex: 0,
+    cards: [],
+    track: null,
     autoRotateTimer: null,
     autoRotateInterval: 5000, // 5 seconds
-    totalPages: 2,
+    totalCards: 6,
 
     init: function() {
-        this.pages = document.querySelectorAll('.feedback-page');
+        this.cards = document.querySelectorAll('.feedback-card');
+        this.track = document.getElementById('feedbackCarouselTrack');
         const prevBtn = document.getElementById('feedbackPrev');
         const nextBtn = document.getElementById('feedbackNext');
         
@@ -143,8 +145,8 @@ const feedbackCarousel = {
             nextBtn.addEventListener('click', () => this.next());
         }
 
-        // Show first page
-        this.showPage(0);
+        // Initialize position
+        this.updateCarousel();
         
         // Start auto-rotation
         this.startAutoRotate();
@@ -169,25 +171,25 @@ const feedbackCarousel = {
     },
 
     next: function() {
-        this.currentPage = (this.currentPage + 1) % this.totalPages;
-        this.showPage(this.currentPage);
+        this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+        this.updateCarousel();
         this.resetTimer();
     },
 
     prev: function() {
-        this.currentPage = (this.currentPage - 1 + this.totalPages) % this.totalPages;
-        this.showPage(this.currentPage);
+        this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+        this.updateCarousel();
         this.resetTimer();
     },
 
-    showPage: function(pageIndex) {
-        // Hide all pages
-        this.pages.forEach(page => {
-            page.classList.remove('active');
-        });
-
-        // Show selected page
-        this.pages[pageIndex].classList.add('active');
+    updateCarousel: function() {
+        // Calculate the translateX value
+        // Each card is 33.333% width + gap (2rem)
+        const cardWidth = 33.333;
+        const gapWidth = 2; // 2rem gap in percentage approximation
+        const translateValue = -this.currentIndex * (cardWidth + gapWidth);
+        
+        this.track.style.transform = `translateX(${translateValue}%)`;
     }
 };
 
