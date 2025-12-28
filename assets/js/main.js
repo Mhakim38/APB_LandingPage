@@ -298,6 +298,32 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===================================
 // Navbar Mobile Menu Close on Click
 // ===================================
+// Scroll Animations using Intersection Observer
+// ===================================
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const animateOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+        }
+    });
+}, observerOptions);
+
+// Observe all sections with animate-on-scroll class
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.animate-on-scroll');
+    sections.forEach(section => {
+        animateOnScroll.observe(section);
+    });
+});
+
+// ===================================
+// Close Mobile Menu on Link Click
+// ===================================
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const navbarCollapse = document.querySelector('.navbar-collapse');
