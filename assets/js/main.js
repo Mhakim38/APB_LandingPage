@@ -124,28 +124,17 @@ document.addEventListener('DOMContentLoaded', function() {
 // Feedback Carousel
 // ===================================
 const feedbackCarousel = {
-    currentIndex: 0,
-    cards: [],
-    dots: [],
-    carouselInner: null,
+    currentPage: 0,
+    pages: [],
     autoRotateTimer: null,
     autoRotateInterval: 5000, // 5 seconds
-    totalCards: 6,
+    totalPages: 2,
 
     init: function() {
-        this.cards = document.querySelectorAll('.feedback-card');
-        this.dots = document.querySelectorAll('.feedback-dot');
-        this.carouselInner = document.getElementById('feedbackCarouselInner');
+        this.pages = document.querySelectorAll('.feedback-page');
         const prevBtn = document.getElementById('feedbackPrev');
         const nextBtn = document.getElementById('feedbackNext');
         
-        // Add click handlers to dots
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                this.goToCard(index);
-            });
-        });
-
         // Add click handlers to arrows
         if (prevBtn) {
             prevBtn.addEventListener('click', () => this.prev());
@@ -154,8 +143,8 @@ const feedbackCarousel = {
             nextBtn.addEventListener('click', () => this.next());
         }
 
-        // Initialize position
-        this.updateCarousel();
+        // Show first page
+        this.showPage(0);
         
         // Start auto-rotation
         this.startAutoRotate();
@@ -179,41 +168,26 @@ const feedbackCarousel = {
         this.startAutoRotate();
     },
 
-    goToCard: function(index) {
-        if (index >= 0 && index < this.totalCards) {
-            this.currentIndex = index;
-            this.updateCarousel();
-            this.resetTimer();
-        }
-    },
-
     next: function() {
-        this.currentIndex = (this.currentIndex + 1) % this.totalCards;
-        this.updateCarousel();
+        this.currentPage = (this.currentPage + 1) % this.totalPages;
+        this.showPage(this.currentPage);
         this.resetTimer();
     },
 
     prev: function() {
-        this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
-        this.updateCarousel();
+        this.currentPage = (this.currentPage - 1 + this.totalPages) % this.totalPages;
+        this.showPage(this.currentPage);
         this.resetTimer();
     },
 
-    updateCarousel: function() {
-        // Calculate the translateX value
-        // Each card is 33.333% width + gap (2rem = approximately 32px)
-        const cardWidth = 100 / 3; // 33.333%
-        const translateValue = -this.currentIndex * cardWidth;
-        
-        this.carouselInner.style.transform = `translateX(${translateValue}%)`;
-
-        // Update dots
-        this.dots.forEach((dot, index) => {
-            dot.classList.remove('active');
-            if (index === this.currentIndex) {
-                dot.classList.add('active');
-            }
+    showPage: function(pageIndex) {
+        // Hide all pages
+        this.pages.forEach(page => {
+            page.classList.remove('active');
         });
+
+        // Show selected page
+        this.pages[pageIndex].classList.add('active');
     }
 };
 
