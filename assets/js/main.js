@@ -127,12 +127,15 @@ const feedbackCarousel = {
     currentIndex: 0,
     cards: [],
     dots: [],
+    carouselInner: null,
     autoRotateTimer: null,
     autoRotateInterval: 5000, // 5 seconds
+    totalCards: 6,
 
     init: function() {
         this.cards = document.querySelectorAll('.feedback-card');
         this.dots = document.querySelectorAll('.feedback-dot');
+        this.carouselInner = document.getElementById('feedbackCarouselInner');
         const prevBtn = document.getElementById('feedbackPrev');
         const nextBtn = document.getElementById('feedbackNext');
         
@@ -151,8 +154,8 @@ const feedbackCarousel = {
             nextBtn.addEventListener('click', () => this.next());
         }
 
-        // Show first card
-        this.showCard(0, 'none');
+        // Initialize position
+        this.updateCarousel();
         
         // Start auto-rotation
         this.startAutoRotate();
@@ -177,56 +180,37 @@ const feedbackCarousel = {
     },
 
     goToCard: function(index) {
-        if (index >= 0 && index < this.cards.length && index !== this.currentIndex) {
-            const direction = index > this.currentIndex ? 'left' : 'right';
-            this.showCard(index, direction);
+        if (index >= 0 && index < this.totalCards) {
             this.currentIndex = index;
+            this.updateCarousel();
             this.resetTimer();
         }
     },
 
     next: function() {
-        const nextIndex = (this.currentIndex + 1) % this.cards.length;
-        this.showCard(nextIndex, 'left');
-        this.currentIndex = nextIndex;
+        this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+        this.updateCarousel();
         this.resetTimer();
     },
 
     prev: function() {
-        const prevIndex = (this.currentIndex - 1 + this.cards.length) % this.cards.length;
-        this.showCard(prevIndex, 'right');
-        this.currentIndex = prevIndex;
+        this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+        this.updateCarousel();
         this.resetTimer();
     },
 
-    showCard: function(index, direction) {
-        // Remove all animation classes
-        this.cards.forEach(card => {
-            card.classList.remove('active', 'slide-out-left', 'slide-out-right', 'slide-in-left', 'slide-in-right');
-        });
-
-        // Apply animations based on direction
-        if (direction === 'left') {
-            // Sliding to next card (left direction)
-            if (this.cards[this.currentIndex]) {
-                this.cards[this.currentIndex].classList.add('slide-out-left');
-            }
-            this.cards[index].classList.add('active', 'slide-in-right');
-        } else if (direction === 'right') {
-            // Sliding to previous card (right direction)
-            if (this.cards[this.currentIndex]) {
-                this.cards[this.currentIndex].classList.add('slide-out-right');
-            }
-            this.cards[index].classList.add('active', 'slide-in-left');
-        } else {
-            // No animation (initial load)
-            this.cards[index].classList.add('active');
-        }
+    updateCarousel: function() {
+        // Calculate the translateX value
+        // Each card is 33.333% width + gap (2rem = approximately 32px)
+        const cardWidth = 100 / 3; // 33.333%
+        const translateValue = -this.currentIndex * cardWidth;
+        
+        this.carouselInner.style.transform = `translateX(${translateValue}%)`;
 
         // Update dots
-        this.dots.forEach((dot, dotIndex) => {
+        this.dots.forEach((dot, index) => {
             dot.classList.remove('active');
-            if (dotIndex === index) {
+            if (index === this.currentIndex) {
                 dot.classList.add('active');
             }
         });
