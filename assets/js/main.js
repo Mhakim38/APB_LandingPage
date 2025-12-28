@@ -224,12 +224,26 @@ document.addEventListener('DOMContentLoaded', function() {
             // TODO: Replace with actual WhatsApp number
             const whatsappNumber = '601117857466'; // Format: 60123456789 (country code + number, no +)
             
+            // Format the date and time
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-GB', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric' 
+            });
+            const formattedTime = dateObj.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: true 
+            });
+            const formattedDateTime = `${formattedDate} at ${formattedTime}`;
+            
             // Construct WhatsApp message
             let whatsappMessage = `Hello,\n\n`;
             whatsappMessage += `I would like to book a table with the following details:\n\n`;
             whatsappMessage += `Name: ${name}\n`;
             whatsappMessage += `Number of Guests (Pax): ${pax}\n`;
-            whatsappMessage += `Date & Time: ${date}\n`;
+            whatsappMessage += `Date & Time: ${formattedDateTime}\n`;
             
             if (message) {
                 whatsappMessage += `\nMessage / Special Request:\n${message}\n`;
