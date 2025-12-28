@@ -222,17 +222,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // TODO: Replace with actual WhatsApp number
-            const whatsappNumber = 'YOUR_PHONE_NUMBER'; // Format: 60123456789 (country code + number, no +)
+            const whatsappNumber = '601117857466'; // Format: 60123456789 (country code + number, no +)
             
             // Construct WhatsApp message
-            let whatsappMessage = `*New Reservation Request*\n\n`;
+            let whatsappMessage = `Hello,\n\n`;
+            whatsappMessage += `I would like to book a table with the following details:\n\n`;
             whatsappMessage += `Name: ${name}\n`;
-            whatsappMessage += `Number of People: ${pax}\n`;
-            whatsappMessage += `Date: ${date}`;
+            whatsappMessage += `Number of Guests (Pax): ${pax}\n`;
+            whatsappMessage += `Date & Time: ${date}\n`;
             
             if (message) {
-                whatsappMessage += `\n\nAdditional Message:\n${message}`;
+                whatsappMessage += `\nMessage / Special Request:\n${message}\n`;
             }
+            
+            whatsappMessage += `\nPlease let me know if the table is available.\nThank you.`;
             
             // Encode the message for URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
