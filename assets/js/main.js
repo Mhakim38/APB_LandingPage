@@ -121,10 +121,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===================================
-// Feedback Carousel (Bootstrap 4)
+// Feedback Carousel (Bootstrap 5)
 // ===================================
-// Bootstrap carousel handles the sliding automatically
-// No custom JavaScript needed
+// Initialize Bootstrap carousel
+const feedbackCarouselElement = document.getElementById('feedbackCarousel');
+if (feedbackCarouselElement) {
+    const feedbackCarousel = new bootstrap.Carousel(feedbackCarouselElement, {
+        interval: 5000,
+        ride: 'carousel',
+        wrap: true
+    });
+
+    // Add click handlers to prevent default scroll behavior
+    const feedbackPrevBtn = document.getElementById('feedbackPrevBtn');
+    const feedbackNextBtn = document.getElementById('feedbackNextBtn');
+
+    if (feedbackPrevBtn) {
+        feedbackPrevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            feedbackCarousel.prev();
+        });
+    }
+
+    if (feedbackNextBtn) {
+        feedbackNextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            feedbackCarousel.next();
+        });
+    }
+}
 
 // ===================================
 // Booking Form Handler
