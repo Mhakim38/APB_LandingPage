@@ -14,7 +14,7 @@ window.addEventListener('scroll', function() {
 // Menu Carousel
 // ===================================
 const menuCarousel = {
-    currentIndex: 2,
+    currentIndex: 0,
     items: [],
     dishes: [
         {
@@ -47,15 +47,45 @@ const menuCarousel = {
     init: function() {
         this.items = document.querySelectorAll('.menu-item');
         this.updateCarousel();
+        
+        // Add click handlers to menu items
+        this.items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                const position = parseInt(item.getAttribute('data-position'));
+                if (position !== 0) {
+                    // Calculate how many steps to rotate
+                    if (position > 0) {
+                        for (let i = 0; i < position; i++) {
+                            this.next();
+                        }
+                    } else {
+                        for (let i = 0; i < Math.abs(position); i++) {
+                            this.prev();
+                        }
+                    }
+                }
+            });
+        });
     },
 
     updateCarousel: function() {
+        const totalItems = this.items.length;
+        
         this.items.forEach((item, index) => {
-            item.classList.remove('active');
-            if (index === this.currentIndex) {
-                item.classList.add('active');
+            // Calculate relative position from current index
+            let position = index - this.currentIndex;
+            
+            // Normalize position to range [-2, 2]
+            if (position > 2) {
+                position = position - totalItems;
+            } else if (position < -2) {
+                position = position + totalItems;
             }
+            
+            // Set position attribute for CSS targeting
+            item.setAttribute('data-position', position);
         });
+        
         this.updateDetails();
     },
 
