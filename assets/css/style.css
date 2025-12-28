@@ -365,14 +365,14 @@ html {
   height: 140px;
 }
 
-/* Position 3 - Farthest right (fading out) */
+/* Position 3 - Farthest right (fading out along oval path) */
 .menu-item[data-position="3"] {
   z-index: 4;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) scale(0.5);
+  left: 98%;
+  bottom: 280px;
+  transform: translateX(-50%) scale(0.45);
   opacity: 0;
-  filter: grayscale(30%);
+  filter: grayscale(40%);
   pointer-events: none;
 }
 
@@ -381,14 +381,14 @@ html {
   height: 100px;
 }
 
-/* Position -3 - Farthest left (fading out) */
+/* Position -3 - Farthest left (fading out along oval path) */
 .menu-item[data-position="-3"] {
   z-index: 4;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) scale(0.5);
+  left: 2%;
+  bottom: 280px;
+  transform: translateX(-50%) scale(0.45);
   opacity: 0;
-  filter: grayscale(30%);
+  filter: grayscale(40%);
   pointer-events: none;
 }
 
