@@ -135,6 +135,7 @@ const menuCarousel = {
         document.getElementById('dishName').textContent = dish.name;
         document.getElementById('dishDescription').textContent = dish.description;
         document.getElementById('dishPrice').textContent = dish.price;
+        document.getElementById('dishPriceMobile').textContent = dish.price;
     },
 
     next: function() {

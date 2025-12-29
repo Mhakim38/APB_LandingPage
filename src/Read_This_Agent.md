@@ -830,4 +830,64 @@ Commit messages must be **clear, senior-level, and descriptive**.
 
 ---
 
+### December 29, 2025 (Evening)
+
+#### Mobile Price Update Fix and Zoom Disable
+
+**Change:** Fixed menu carousel price not updating on mobile devices and confirmed zoom is disabled for mobile.
+
+**Reason:** User reported that when navigating through the menu carousel on mobile, the price (RM) was not changing to match the selected dish. Additionally, confirmed that double-tap zoom should be disabled on mobile for better UX.
+
+**Implementation:**
+
+* **Price Update Fix (JavaScript):**
+  * **Issue:** Two separate price elements exist in HTML:
+    * Desktop: `<h2 id="dishPrice" class="d-none d-lg-block">` (hidden on mobile)
+    * Mobile: `<h2 id="dishPriceMobile" class="d-lg-none">` (hidden on desktop)
+  * **Root Cause:** `updateDetails()` function in `main.js` only updated `dishPrice` element, not `dishPriceMobile`
+  * **Fix:** Updated `updateDetails()` to update both price elements:
+    ```javascript
+    updateDetails: function() {
+        const dish = this.dishes[this.currentIndex];
+        document.getElementById('dishName').textContent = dish.name;
+        document.getElementById('dishDescription').textContent = dish.description;
+        document.getElementById('dishPrice').textContent = dish.price;
+        document.getElementById('dishPriceMobile').textContent = dish.price; // Added
+    }
+    ```
+
+* **Zoom Disable (Already Implemented):**
+  * **Meta Viewport:** Confirmed viewport meta tag already has zoom disabled:
+    ```html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    ```
+  * **Properties:**
+    * `maximum-scale=1.0` - Prevents pinch zoom
+    * `user-scalable=no` - Disables double-tap zoom
+  * **Effect:** Users cannot zoom in/out on mobile, providing fixed, app-like experience
+
+**Benefits:**
+
+* **Consistent Price Display:** Price now updates correctly on both mobile and desktop when carousel changes
+* **Better Mobile UX:** Zoom disabled prevents accidental zoom gestures during navigation
+* **Fixed App-Like Feel:** No zoom provides stable, controlled mobile experience
+* **Single Source of Truth:** Both price elements always synchronized with current dish
+
+**Behavior:**
+
+* **Menu Carousel Navigation:** When user clicks next/previous or taps dish image:
+  * Desktop price (`dishPrice`) updates immediately
+  * Mobile price (`dishPriceMobile`) updates simultaneously
+  * Both display same value from `dishes[currentIndex].price`
+* **Mobile Zoom:** Double-tap and pinch gestures disabled, page remains at fixed scale
+
+**Technical Details:**
+
+* Single line addition to JavaScript: `document.getElementById('dishPriceMobile').textContent = dish.price;`
+* No HTML changes needed - separate price elements already existed with proper responsive classes
+* Zoom control via standard HTML5 viewport meta tag
+* Both fixes ensure mobile-first experience remains consistent
+
+---
+
 **End of Document**
