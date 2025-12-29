@@ -322,6 +322,100 @@ Commit messages must be **clear, senior-level, and descriptive**.
 
 ### December 29, 2025
 
+#### Mobile UI/UX Enhancement for Hero, Menu, and Feedback Sections
+
+**Change:** Significantly improved mobile experience for Hero section, Menu carousel, and Feedback cards with enhanced visual hierarchy, better spacing, and improved readability across all mobile devices.
+
+**Reason:** User reported that Hero, Menu, and Feedback sections were not displaying well on mobile devices. The previous responsive implementation needed refinement for better mobile aesthetics and usability.
+
+**Implementation:**
+
+* **Hero Section Mobile Improvements:**
+  * **Layout:** Added center text alignment for better mobile reading
+  * **Spacing:** Optimized padding (80px→70px→65px across breakpoints)
+  * **Typography:** Improved line-height (1.1-1.15) for tighter, more readable text
+  * **Image:** Added max-width constraints (90% on tablet, 100% on mobile)
+  * **Image Radius:** Progressive reduction (30px→20px→15px) for mobile
+  * **Buttons:** Enhanced with box-shadow (0 3px 10px) for depth, better gap spacing (1rem→0.8rem→0.7rem)
+  * **Description:** Improved max-width (100% on mobile) and line-height (1.7-1.65)
+  * **Min-height:** Removed 100vh on mobile for natural content flow
+
+* **Menu Section Mobile Improvements:**
+  * **Oval Height:** Optimized across breakpoints (320px→340px→310px)
+  * **Center Dish:** Larger on mobile (160px→170px→155px→145px)
+  * **Side Dishes:** Better sizing (120px→130px→115px→105px)
+  * **Positioning:** Adjusted left percentages for better arc display
+    * Position 1: 70%→72% on smaller screens
+    * Position -1: 30%→28% on smaller screens
+  * **Bottom Spacing:** Optimized (70px→90px→85px) for better oval alignment
+  * **Navigation Buttons:** Progressive sizing (40px→42px→38px) with proper bottom positioning
+  * **Menu Detail:** Enhanced padding and margins for mobile readability
+  * **Dish Name:** Center-aligned, progressive sizing (1.7rem→1.6rem→1.5rem)
+  * **Dish Description:** Center-aligned with improved line-height (1.7-1.65)
+  * **Section Title:** Better mobile sizing (2.2rem→1.9rem→1.75rem)
+
+* **Feedback Cards Mobile Improvements:**
+  * **Card Padding:** Enhanced (2rem→2rem 1.5rem→1.8rem 1.3rem→1.6rem 1.2rem)
+  * **Min-height:** Adjusted (280px→300px→280px→270px) for content balance
+  * **Border Radius:** Progressive (20px→20px→18px) for mobile aesthetics
+  * **Box Shadow:** Increased depth (0 6px 20px) for better card definition
+  * **Text Size:** Larger on mobile (1.05rem→1rem→0.98rem) for readability
+  * **Line Height:** Enhanced (1.75-1.7) for comfortable reading
+  * **Name Size:** Better prominence (1.15rem→1.1rem)
+  * **Position Text:** Slightly larger (0.95rem→0.98rem)
+  * **Wrapper Padding:** Optimized (60px→55px→50px→48px) for edge spacing
+  * **Navigation:** Better sizing (42px→38px) with icon adjustments
+  * **Section Titles:** Progressive scaling for mobile hierarchy
+
+* **Cross-Section Improvements:**
+  * **Container Padding:** Tighter on extra small (15px) for edge-to-edge feel
+  * **Typography Scale:** Consistent progressive reduction across all breakpoints
+  * **Touch Targets:** Maintained 38-48px minimum for accessibility
+  * **Visual Hierarchy:** Enhanced contrast between active/inactive elements
+  * **Spacing Consistency:** Unified gap/margin system across breakpoints
+
+**Responsive Breakpoint Summary:**
+
+* **≤480px (Extra Small):**
+  * Hero: 1.8rem title, 145px center dish, 270px feedback cards
+  * Tightest spacing, smallest touch targets (38px)
+  
+* **≤576px (Small Mobile):**
+  * Hero: 2rem title, 155px center dish, 280px feedback cards
+  * Balanced spacing, standard touch targets (42px)
+  
+* **≤768px (Tablet):**
+  * Hero: 2.5rem title, 170px center dish, 300px feedback cards
+  * Comfortable spacing, enhanced touch targets (42-44px)
+  
+* **≤991px (Large Tablet):**
+  * Maintained desktop layout with proportional scaling
+
+**Benefits:**
+
+* **Better Visual Hierarchy:** Clear distinction between primary and secondary content
+* **Improved Readability:** Optimized typography and spacing for mobile screens
+* **Enhanced Touch Experience:** Better button placement and sizing
+* **Balanced Aesthetics:** Cards and elements properly scaled for each breakpoint
+* **Natural Flow:** Content breathes better without cramped spacing
+* **Consistent Branding:** Visual identity maintained across all screen sizes
+* **Performance:** Optimized sizes reduce rendering complexity on mobile
+
+**Behavior:**
+
+* Hero section centers content on mobile for easier thumb reach
+* Menu carousel dishes properly positioned along oval curve
+* Feedback cards have comfortable padding with easy-to-read text
+* All interactive elements remain easily tappable
+* Images scale proportionally without distortion
+* Text remains readable without horizontal scrolling
+
+---
+
+## Change Log
+
+### December 29, 2025
+
 #### Comprehensive Responsive Design Enhancement
 
 **Change:** Enhanced responsive design across all screen sizes with improved mobile-first approach, better touch targets, and optimized layouts for smartphones, tablets, and desktops.
