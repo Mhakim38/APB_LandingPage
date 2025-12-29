@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // TODO: Replace with actual WhatsApp number
-            const whatsappNumber = '601117857466'; // Format: 60123456789 (country code + number, no +)
+            const whatsappNumber = '60164103533'; // Format: 60123456789 (country code + number, no +)
             
             // Format the date and time
             const dateObj = new Date(date);
