@@ -202,7 +202,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--main);
+    background-color: var(--font-tertiary);
     z-index: 1040;
     display: flex !important;
     align-items: center;
@@ -272,11 +272,13 @@ html {
     border-radius: 10px;
     display: inline-block;
     transition: all 0.2s ease-in-out;
+    color: var(--white);
   }
   
   .navbar-nav .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(245, 177, 19, 0.2);
     transform: scale(1.05);
+    color: var(--main);
   }
   
   .navbar.scrolled .navbar-nav .nav-link {
@@ -285,6 +287,7 @@ html {
   
   .navbar.scrolled .navbar-nav .nav-link:hover {
     background-color: rgba(245, 177, 19, 0.2);
+    color: var(--main);
   }
   
   .btn-book-table {
@@ -294,6 +297,13 @@ html {
     display: inline-block;
     width: auto;
     min-width: 250px;
+    background-color: var(--main);
+    color: var(--font-tertiary);
+  }
+  
+  .btn-book-table:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
   }
   
   /* Prevent body scroll when menu is open */
