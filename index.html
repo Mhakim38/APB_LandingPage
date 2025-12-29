@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <link rel="icon" type="image/x-icon" href="/src/logo.png">
     <title>Ayam Penyet Best - Mayang Mall Terengganu</title>
     
@@ -207,11 +207,11 @@
                         <div class="col-lg-6">
                             <div class="mb-4">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Your name" required>
+                                <input type="text" class="form-control" id="name" placeholder="Your name" required autocomplete="name">
                             </div>
                             <div class="mb-4">
                                 <label for="pax" class="form-label">Number of Guests (Pax)</label>
-                                <input type="number" class="form-control" id="pax" placeholder="2" min="1" required>
+                                <input type="number" class="form-control" id="pax" placeholder="2" min="1" max="20" required inputmode="numeric">
                             </div>
                             <div class="mb-4">
                                 <label for="date" class="form-label">Date & Time</label>

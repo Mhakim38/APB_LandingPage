@@ -656,6 +656,7 @@ html {
   max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
+  touch-action: pan-y;
 }
 
 .feedback-carousel {
@@ -663,6 +664,7 @@ html {
   overflow: hidden;
   min-height: 350px;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .feedback-carousel-track {
@@ -682,6 +684,24 @@ html {
   min-height: 280px;
   display: flex;
   flex-direction: column;
+}
+
+/* Mobile: 1 card */
+@media (max-width: 767px) {
+  .feedback-card {
+    width: 100%;
+  }
+  
+  .feedback-carousel-wrapper {
+    padding: 0 60px;
+  }
+}
+
+/* Tablet: 2 cards */
+@media (min-width: 768px) and (max-width: 991px) {
+  .feedback-card {
+    width: calc((100% - 2rem) / 2);
+  }
 }
 
 .feedback-card:hover {
@@ -922,7 +942,9 @@ html {
 /* ===================================
    Responsive Design
    =================================== */
-@media (max-width: 991px) {
+
+/* Extra small devices (landscape phones) */
+@media (max-width: 480px) {\n  .container {\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n  \n  .hero-title {\n    font-size: 1.75rem;\n  }\n  \n  .hero-subtitle {\n    font-size: 1.5rem;\n  }\n  \n  .hero-location {\n    font-size: 1.2rem;\n  }\n  \n  .hero-description {\n    font-size: 0.95rem;\n  }\n  \n  .btn-menu, .btn-feedback {\n    padding: 0.9rem 1.5rem;\n    font-size: 0.95rem;\n  }\n  \n  .oval-background {\n    height: 320px;\n  }\n  \n  .menu-item[data-position=\"0\"] img {\n    width: 140px;\n    height: 140px;\n  }\n  \n  .menu-item[data-position=\"1\"] img,\n  .menu-item[data-position=\"-1\"] img {\n    width: 100px;\n    height: 100px;\n  }\n  \n  .section-title, .section-title-light, .section-title-dark {\n    font-size: 1.6rem;\n  }\n  \n  .feedback-card {\n    padding: 1.5rem;\n    min-height: 260px;\n  }\n  \n  .feedback-text {\n    font-size: 0.95rem;\n  }\n  \n  .feedback-carousel-wrapper {\n    padding: 0 50px;\n  }\n  \n  .dish-name {\n    font-size: 1.3rem;\n  }\n  \n  .dish-description {\n    font-size: 0.95rem;\n  }\n}\n\n@media (max-width: 991px) {
   .hero-title {
     font-size: 3rem;
   }
@@ -942,6 +964,12 @@ html {
   
   .section-title, .section-title-light, .section-title-dark {
     font-size: 2.5rem;
+  }
+  
+  /* Improve section padding on tablets */
+  .feedback-section,
+  .book-section {
+    padding: 60px 0;
   }
   
   .oval-background {
@@ -1003,13 +1031,13 @@ html {
     right: 2%;
   }
   
+  .carousel-nav {
+    bottom: 90px;
+  }
+  
   .dish-actions {
     justify-content: center;
     margin-top: 2rem;
-  }
-  
-  .feedback-carousel {
-    grid-template-columns: 1fr;
   }
   
   .menu-detail {
@@ -1020,6 +1048,7 @@ html {
 @media (max-width: 768px) {
   .hero-section {
     padding-top: 80px;
+    padding-bottom: 40px;
   }
   
   .hero-title {
@@ -1037,6 +1066,30 @@ html {
   
   .btn-menu, .btn-feedback {
     text-align: center;
+    padding: 1rem 2rem;
+    min-height: 48px;
+  }
+  
+  /* Improve section spacing */
+  .feedback-section,
+  .book-section {
+    padding: 50px 0;
+  }
+  
+  .menu-section {
+    padding: 0 0 50px;
+  }
+  
+  /* Better carousel navigation on mobile */
+  .carousel-nav,
+  .feedback-nav {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .carousel-nav i,
+  .feedback-nav i {
+    font-size: 1.3rem;
   }
   
   .oval-background {
@@ -1093,8 +1146,18 @@ html {
     font-size: 2rem;
   }
   
+  .hero-description {
+    font-size: 1rem;
+  }
+  
   .section-title, .section-title-light, .section-title-dark {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle,
+  .section-subtitle-light,
+  .section-subtitle-dark {
+    font-size: 0.95rem;
   }
   
   .navbar-nav .nav-link {
@@ -1105,14 +1168,17 @@ html {
     margin-top: 1rem;
     display: block;
     text-align: center;
+    min-height: 48px;
   }
   
   .oval-background {
-    height: 400px;
+    height: 350px;
+    padding-top: 30px;
   }
   
   .menu-detail {
     padding: 1.5rem;
+    margin-top: 2rem;
   }
   
   .dish-name {
@@ -1121,5 +1187,33 @@ html {
   
   .dish-price {
     font-size: 2rem;
+  }
+  
+  /* Improve form on small screens */
+  .booking-form-wrapper {
+    padding: 1.5rem;
+  }
+  
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Better footer spacing */
+  .footer-section {
+    padding: 40px 0 20px;
+  }
+  
+  .footer-title {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Stack dish actions vertically */
+  .dish-actions {
+    flex-direction: column;
+  }
+  
+  .dish-actions .btn {
+    width: 100%;
   }
 }

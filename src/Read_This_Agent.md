@@ -318,6 +318,115 @@ Commit messages must be **clear, senior-level, and descriptive**.
 
 ---
 
+## Change Log
+
+### December 29, 2025
+
+#### Comprehensive Responsive Design Enhancement
+
+**Change:** Enhanced responsive design across all screen sizes with improved mobile-first approach, better touch targets, and optimized layouts for smartphones, tablets, and desktops.
+
+**Reason:** The PRD requires full responsiveness with mobile-first design. While basic responsive rules existed, the implementation needed significant enhancements for optimal mobile user experience, especially for forms, carousels, and touch interactions.
+
+**Implementation:**
+
+* **CSS Responsive Breakpoints Added:**
+  * **Extra Small (≤480px):** Landscape phones
+    * Reduced hero title to 1.75rem
+    * Smaller menu carousel items (140px center, 100px sides)
+    * Compact feedback cards (1.5rem padding, 260px min-height)
+    * Reduced section titles to 1.6rem
+    * Tighter container padding (15px)
+  
+  * **Small Mobile (≤576px):** Portrait phones
+    * Hero title: 2rem
+    * Section titles: 1.8rem
+    * Form inputs: 16px font-size (prevents iOS zoom)
+    * Full-width buttons with 48px min-height (accessible touch targets)
+    * Stacked dish actions vertically
+    * Reduced footer padding (40px/20px)
+    * Oval background: 350px height
+  
+  * **Tablet (≤768px):** Tablets and large phones
+    * Hero section: reduced padding (80px top, 40px bottom)
+    * Hero title: 2.5rem
+    * Buttons: 1rem padding, 48px min-height for touch
+    * Carousel navigation: 44px × 44px (Apple's recommended touch target)
+    * Section padding: 50px vertical
+    * Menu carousel: bottom position adjusted to 90px
+  
+  * **Large Tablet (≤991px):** Small laptops
+    * Hero title: 3rem
+    * Section padding: 60px vertical
+    * Maintained desktop layout with scaled-down elements
+
+* **Feedback Carousel Responsive Grid:**
+  * **Mobile (≤767px):** 1 card at 100% width
+    * Wrapper padding: 0 60px
+  * **Tablet (768-991px):** 2 cards at calc((100% - 2rem) / 2) width
+  * **Desktop (≥992px):** 3 cards at calc((100% - 4rem) / 3) width
+  * Added `touch-action: pan-y` for better swipe gestures
+  * Added `-webkit-overflow-scrolling: touch` for smooth iOS scrolling
+
+* **Form Enhancements:**
+  * Added `autocomplete="name"` to name input for autofill
+  * Added `inputmode="numeric"` to pax field for numeric keyboard on mobile
+  * Added `max="20"` validation to pax field
+  * Font-size: 16px on mobile to prevent iOS zoom on focus
+  * Responsive padding: 2rem → 1.5rem on small screens
+
+* **HTML Meta Viewport:**
+  * Updated from `width=device-width, initial-scale=1.0`
+  * To `width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes`
+  * Allows user zoom (accessibility requirement) while preventing excessive zoom
+
+* **Touch Target Improvements:**
+  * All interactive elements: minimum 44px × 44px (WCAG AAA standard)
+  * Buttons: 48px min-height for better thumb access
+  * Carousel navigation: 44px circular buttons on mobile
+  * Increased button padding for easier tapping
+
+* **Menu Carousel Mobile Optimization:**
+  * Position 2 and -2 hidden on mobile (opacity: 0, pointer-events: none)
+  * Shows only center + 2 adjacent items (5 total → 3 on mobile)
+  * Adjusted positioning percentages for better small-screen layout
+  * Responsive image sizes scale proportionally
+
+* **Spacing & Layout:**
+  * Hero content: removed right padding on tablets/mobile
+  * Hero buttons: stacked vertically on mobile with full width
+  * Section titles: progressive sizing (3rem → 1.6rem)
+  * Menu detail: progressive padding (3rem → 1.5rem)
+  * Footer: reduced spacing on mobile (60px → 40px)
+
+* **Typography Scale:**
+  * Implemented fluid typography across breakpoints
+  * Hero title: 4rem → 3rem → 2.5rem → 2rem → 1.75rem
+  * Body text: maintains readability at 0.95rem minimum
+  * Subtitle text scaled down for mobile (1.3rem → 0.95rem)
+
+**Benefits:**
+
+* **Improved Mobile UX:** Better readability and interaction on all mobile devices
+* **Accessible Touch Targets:** All buttons meet WCAG 2.1 AAA standards (44px minimum)
+* **Better Form Experience:** Native keyboard support, no zoom issues on iOS
+* **Smooth Scrolling:** Hardware-accelerated touch scrolling on iOS
+* **Optimized Performance:** Reduced element sizes and simplified layouts on mobile
+* **Progressive Enhancement:** Experience scales appropriately from 320px to 1920px+
+* **Cross-Device Consistency:** Maintains brand identity while adapting to screen constraints
+
+**Behavior:**
+
+* **Navbar:** Collapses to hamburger menu on mobile (Bootstrap 5 default)
+* **Feedback Carousel:** Shows 1/2/3 cards based on screen width
+* **Menu Carousel:** Adapts from 5 visible items to 3 on mobile
+* **Forms:** Native mobile keyboards, no zoom issues, autofill support
+* **Buttons:** Easy to tap, proper spacing, readable text
+* **Images:** Scale proportionally without overflow
+* **Text:** Remains readable at all screen sizes without horizontal scroll
+
+---
+
 ## Final Notes
 
 * Match spacing, proportions, and flow from reference image
