@@ -981,7 +981,137 @@ html {
    =================================== */
 
 /* Extra small devices (landscape phones) */
-@media (max-width: 480px) {\n  .container {\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n  \n  .hero-title {\n    font-size: 1.75rem;\n  }\n  \n  .hero-subtitle {\n    font-size: 1.5rem;\n  }\n  \n  .hero-location {\n    font-size: 1.2rem;\n  }\n  \n  .hero-description {\n    font-size: 0.95rem;\n  }\n  \n  .btn-menu, .btn-feedback {\n    padding: 0.9rem 1.5rem;\n    font-size: 0.95rem;\n  }\n  \n  .oval-background {\n    height: 320px;\n  }\n  \n  .menu-item[data-position=\"0\"] img {\n    width: 140px;\n    height: 140px;\n  }\n  \n  .menu-item[data-position=\"1\"] img,\n  .menu-item[data-position=\"-1\"] img {\n    width: 100px;\n    height: 100px;\n  }\n  \n  .section-title, .section-title-light, .section-title-dark {\n    font-size: 1.6rem;\n  }\n  \n  .feedback-card {\n    padding: 1.5rem;\n    min-height: 260px;\n  }\n  \n  .feedback-text {\n    font-size: 0.95rem;\n  }\n  \n  .feedback-carousel-wrapper {\n    padding: 0 50px;\n  }\n  \n  .dish-name {\n    font-size: 1.3rem;\n  }\n  \n  .dish-description {\n    font-size: 0.95rem;\n  }\n}\n\n@media (max-width: 991px) {
+@media (max-width: 480px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .hero-section {
+    padding-top: 65px;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.15;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .hero-location {
+    font-size: 1.15rem;
+  }
+  
+  .hero-description {
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+  
+  .btn-menu, .btn-feedback {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.98rem;
+  }
+  
+  .oval-background {
+    height: 310px;
+    padding-top: 20px;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .menu-item[data-position="0"] img {
+    width: 145px;
+    height: 145px;
+  }
+  
+  .menu-item[data-position="1"] img,
+  .menu-item[data-position="-1"] img {
+    width: 105px;
+    height: 105px;
+  }
+  
+  .menu-item[data-position="0"] {
+    bottom: 15px;
+  }
+  
+  .menu-item[data-position="1"],
+  .menu-item[data-position="-1"] {
+    bottom: 85px;
+  }
+  
+  .carousel-nav {
+    width: 38px;
+    height: 38px;
+    bottom: 90px;
+  }
+  
+  .carousel-nav i {
+    font-size: 1.2rem;
+  }
+  
+  .menu-detail {
+    padding: 1.3rem 0.9rem;
+  }
+  
+  .section-title-light, .section-title-dark {
+    font-size: 1.7rem;
+  }
+  
+  .section-subtitle-light, .section-subtitle-dark {
+    font-size: 0.98rem;
+  }
+  
+  .feedback-card {
+    padding: 1.6rem 1.2rem;
+    min-height: 270px;
+    border-radius: 18px;
+  }
+  
+  .feedback-text {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+  
+  .feedback-name {
+    font-size: 1.1rem;
+  }
+  
+  .feedback-carousel-wrapper {
+    padding: 0 48px;
+  }
+  
+  .feedback-nav {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .feedback-nav i {
+    font-size: 1.2rem;
+  }
+  
+  .dish-name {
+    font-size: 1.5rem;
+  }
+  
+  .dish-description {
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+  
+  .dish-price {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 991px) {
   .hero-title {
     font-size: 3rem;
   }
