@@ -130,6 +130,10 @@ html {
   filter: invert(1);
 }
 
+.navbar.scrolled .navbar-toggler[aria-expanded="false"] .navbar-toggler-icon {
+  filter: invert(1);
+}
+
 /* Custom nav link spacing */
 .navbar-nav .nav-link {
   margin: 0 0.75rem;
