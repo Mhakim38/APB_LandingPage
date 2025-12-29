@@ -182,20 +182,42 @@ html {
 
 .navbar-toggler {
   border: none;
+  position: relative;
+  z-index: 1050;
 }
 
 .navbar-toggler:focus {
   box-shadow: none;
 }
 
-/* Mobile Menu Styles */
+.navbar-toggler-icon {
+  transition: all 0.3s ease;
+}
+
+/* Mobile Fullscreen Menu Styles */
 @media (max-width: 991px) {
   .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: var(--main);
-    padding: 1rem;
-    border-radius: 15px;
-    margin-top: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .navbar-collapse.show,
+  .navbar-collapse.collapsing {
+    opacity: 1;
+    visibility: visible;
   }
   
   .navbar.scrolled .navbar-collapse {
@@ -203,17 +225,30 @@ html {
   }
   
   .navbar-nav {
-    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 1rem 0;
   }
   
   .navbar-nav .nav-link {
-    padding: 0.7rem 1rem;
-    border-radius: 8px;
-    margin: 0.3rem 0;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: inline-block;
+    transition: all 0.3s ease;
   }
   
   .navbar-nav .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+  }
+  
+  .navbar.scrolled .navbar-nav .nav-link {
+    color: var(--white);
   }
   
   .navbar.scrolled .navbar-nav .nav-link:hover {
@@ -221,9 +256,17 @@ html {
   }
   
   .btn-book-table {
-    margin-top: 0.5rem;
-    width: 100%;
-    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem 3rem;
+    font-size: 1.3rem;
+    display: inline-block;
+    width: auto;
+    min-width: 250px;
+  }
+  
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
   }
 }
 

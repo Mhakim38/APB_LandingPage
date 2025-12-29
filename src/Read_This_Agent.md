@@ -322,6 +322,88 @@ Commit messages must be **clear, senior-level, and descriptive**.
 
 ### December 29, 2025
 
+#### Fullscreen Mobile Menu Implementation
+
+**Change:** Transformed mobile hamburger menu into a fullscreen overlay with centered menu items, providing a modern and immersive navigation experience on mobile devices.
+
+**Reason:** User requested a fullscreen mobile menu experience where clicking the hamburger button opens a fullscreen overlay with menu items centered in the middle of the page, creating a better mobile-first experience.
+
+**Implementation:**
+
+* **CSS Changes (Fullscreen Overlay):**
+  * **Position:** Changed from relative dropdown to `position: fixed` covering entire viewport
+  * **Dimensions:** `top: 0, left: 0, right: 0, bottom: 0` for full coverage
+  * **Z-Index:** Set to 1040 for proper layering, toggler at 1050
+  * **Centering:** Used flexbox with `align-items: center` and `justify-content: center`
+  * **Background:** Solid `--main` color (or `--font-tertiary` when scrolled)
+  * **Transitions:** Smooth fade in/out with opacity and visibility transitions (0.3s ease)
+  * **Initial State:** `opacity: 0` and `visibility: hidden` when closed
+  * **Active State:** `opacity: 1` and `visibility: visible` when `.show` class applied
+
+* **Menu Item Styling:**
+  * **Text Alignment:** Center-aligned for better visual balance
+  * **Font Size:** Increased to 1.5rem for better readability
+  * **Spacing:** 1rem vertical margin between items
+  * **Padding:** 1rem 2rem for comfortable touch targets
+  * **Hover Effect:** Scale transform (1.05) + background highlight
+  * **Border Radius:** 10px rounded corners on hover states
+
+* **Book Table Button:**
+  * **Size:** Larger padding (1rem 3rem), font-size 1.3rem
+  * **Width:** Auto width with 250px minimum for prominence
+  * **Position:** Centered with 1.5rem top margin
+  * **Display:** Inline-block for proper centering
+
+* **JavaScript Enhancements:**
+  * **Body Scroll Lock:** Prevents background scrolling when menu is open
+    * Adds `.menu-open` class to body on `show.bs.collapse` event
+    * Removes class on `hide.bs.collapse` event
+    * CSS rule: `body.menu-open { overflow: hidden; }`
+  * **Auto-Close on Nav Click:** Menu automatically closes when clicking nav links
+    * Detects window width < 992px (mobile breakpoint)
+    * Uses Bootstrap's Collapse API to programmatically hide menu
+    * Smooth user experience without manual close
+  * **Bootstrap Events:** Leverages native Bootstrap 5 collapse events for reliability
+
+* **Toggler Improvements:**
+  * **Z-Index:** 1050 to stay above fullscreen overlay
+  * **Position:** Relative positioning for proper stacking
+  * **Icon Transition:** Smooth 0.3s ease transition on toggle icon
+
+**Benefits:**
+
+* **Modern UX:** Fullscreen overlay provides focus and eliminates distractions
+* **Better Visibility:** Large, centered menu items are easy to read and tap
+* **Smooth Animations:** Fade in/out transitions create polished experience
+* **No Body Scroll:** Prevents awkward scrolling of background content
+* **Auto-Close:** Menu closes automatically after selection for intuitive flow
+* **Bootstrap Native:** Uses Bootstrap 5's collapse component and events
+* **Touch-Friendly:** Large touch targets with hover/active states
+* **Consistent Branding:** Maintains brand colors in fullscreen context
+
+**Behavior:**
+
+* Click hamburger → fullscreen overlay fades in with menu centered
+* Background scroll is locked when menu is open
+* Hover menu items → slight scale animation + background highlight
+* Click any nav link → menu automatically closes and navigates
+* Click hamburger again → menu fades out smoothly
+* Color scheme changes based on scroll position (main/dark)
+
+**Technical Details:**
+
+* Uses Bootstrap 5's `.collapse` and `.show` classes
+* Leverages Bootstrap events: `show.bs.collapse`, `hide.bs.collapse`
+* No custom collapse logic needed - pure Bootstrap API
+* CSS transitions handle visual animations
+* JavaScript only manages body scroll lock and auto-close behavior
+
+---
+
+## Change Log
+
+### December 29, 2025
+
 #### Mobile UI/UX Enhancement for Hero, Menu, and Feedback Sections
 
 **Change:** Significantly improved mobile experience for Hero section, Menu carousel, and Feedback cards with enhanced visual hierarchy, better spacing, and improved readability across all mobile devices.

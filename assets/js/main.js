@@ -11,6 +11,39 @@ window.addEventListener('scroll', function() {
 });
 
 // ===================================
+// Mobile Menu Body Scroll Lock
+// ===================================
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarCollapse = document.getElementById('navbarNav');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    
+    if (navbarCollapse) {
+        // Lock body scroll when menu opens
+        navbarCollapse.addEventListener('show.bs.collapse', function() {
+            document.body.classList.add('menu-open');
+        });
+        
+        // Unlock body scroll when menu closes
+        navbarCollapse.addEventListener('hide.bs.collapse', function() {
+            document.body.classList.remove('menu-open');
+        });
+        
+        // Close menu when clicking on nav links
+        const navLinks = navbarCollapse.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth < 992) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+    }
+});
+
+// ===================================
 // Menu Carousel
 // ===================================
 const menuCarousel = {
