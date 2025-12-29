@@ -211,8 +211,8 @@ html {
     margin: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
-                visibility 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.2s ease-out, 
+                visibility 0.2s ease-out;
   }
   
   .navbar-collapse.show {
@@ -223,8 +223,8 @@ html {
   .navbar-collapse.collapsing {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
-                visibility 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.15s ease-in, 
+                visibility 0.15s ease-in;
     height: auto !important;
   }
   
@@ -241,8 +241,8 @@ html {
   .navbar-nav .nav-item {
     margin: 1rem 0;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
   }
   
   .navbar-collapse.show .nav-item {
@@ -251,19 +251,19 @@ html {
   }
   
   .navbar-collapse.show .nav-item:nth-child(1) {
-    transition-delay: 0.05s;
+    transition-delay: 0.02s;
   }
   
   .navbar-collapse.show .nav-item:nth-child(2) {
-    transition-delay: 0.1s;
+    transition-delay: 0.04s;
   }
   
   .navbar-collapse.show .nav-item:nth-child(3) {
-    transition-delay: 0.15s;
+    transition-delay: 0.06s;
   }
   
   .navbar-collapse.show .nav-item:nth-child(4) {
-    transition-delay: 0.2s;
+    transition-delay: 0.08s;
   }
   
   .navbar-nav .nav-link {
