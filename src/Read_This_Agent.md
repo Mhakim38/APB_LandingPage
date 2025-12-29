@@ -721,4 +721,113 @@ Commit messages must be **clear, senior-level, and descriptive**.
 
 ---
 
+## Change Log
+
+### December 29, 2025
+
+#### Mobile UX Enhancement - Multiple UI Improvements
+
+**Change:** Implemented comprehensive mobile UI enhancements including hamburger menu animation, button layouts, price repositioning, carousel navigation fix, and form improvements.
+
+**Reason:** User requested multiple mobile-specific improvements to enhance user experience and fix layout issues on mobile devices.
+
+**Implementation:**
+
+* **1. Hamburger to X Animation:**
+  * **CSS Animation:** Added CSS transform animation for navbar toggler icon
+  * **Behavior:** When `aria-expanded="true"`, hamburger icon transforms to X using CSS pseudo-elements
+  * **Implementation:**
+    * Removed default Bootstrap icon on expanded state
+    * Added `::before` and `::after` pseudo-elements with 2px height bars
+    * `::before` rotates 45deg, `::after` rotates -45deg
+    * Smooth 0.3s ease transition between states
+  * **Revert:** Icon automatically reverts to hamburger when menu closes (`aria-expanded="false"`)
+
+* **2. Hero Section Button Layout (Mobile):**
+  * **Desktop:** Buttons remain side by side in left column (`.d-none .d-lg-flex`)
+  * **Mobile:** Buttons moved to new row below image using Bootstrap grid
+  * **Grid Structure:**
+    * New `.col-12 .d-lg-none` container after image column
+    * `.row .g-2` with two `.col-6` columns for equal width buttons
+    * Both buttons have `.w-100` class for full column width
+  * **Styling:**
+    * Added `.hero-buttons-mobile` class with `margin-top: 1rem`
+    * Both buttons have `min-height: 50px` for equal height
+    * Flex centering for text alignment
+
+* **3. Menu Section Button Layout:**
+  * **Grid Structure:** Changed from flexbox to Bootstrap grid
+    * Desktop: Stacked vertically (`.col-lg-12`)
+    * Mobile: Side by side (`.col-6`)
+    * Used `.row .g-2` for 0.5rem gap between buttons
+  * **Button Sizing:**
+    * Both buttons have `.w-100` for full column width
+    * `min-height: 50px` ensures equal height
+    * Flex centering for text alignment
+  * **Actions Container:** Simplified to `flex-direction: column` with `align-items: stretch`
+
+* **4. Price Repositioning:**
+  * **Old Location:** Inside `.dish-actions` container, below buttons
+  * **New Location:** Moved to main content area, directly under dish name
+  * **HTML Structure:**
+    ```html
+    <h3 class="dish-name">...</h3>
+    <h2 class="dish-price">RM 12.90</h2>
+    <p class="dish-description">...</p>
+    ```
+  * **Styling Updates:**
+    * Reduced `margin-bottom` on `.dish-name` from 1rem to 0.5rem
+    * Set `.dish-price` margin to `0 0 1rem 0` for proper spacing
+    * Removed duplicate `.dish-actions` definitions from CSS
+  * **Benefits:** Better visual hierarchy, price more prominent
+
+* **5. Feedback Carousel Navigation Fix:**
+  * **Issue:** Cards not scrolling properly, only moving partial distance
+  * **Root Cause:** Incorrect translateX calculation not accounting for gap between cards
+  * **Fix:** Updated `updateCarousel()` function
+    * Calculate card width percentage including gaps
+    * Convert 2rem gap to percentage based on track width
+    * Apply transform: `translateX(calc(${value}% - ${index * 2}rem))`
+  * **Result:** Each click now properly scrolls by one full card width + gap
+
+* **6. Booking Form Textarea Height:**
+  * **Goal:** Match textarea height to left column (Name + Pax + Date inputs)
+  * **Implementation:**
+    * Removed `rows="8"` attribute for dynamic sizing
+    * Added `.booking-form-right` class to right column
+    * Set `.booking-form-right` with `min-height: 280px`
+    * Set textarea `min-height: 210px` for matching input group height
+    * Added `resize: vertical` for user control
+  * **Calculation:**
+    * 3 inputs × 48px (approx) + 3 × 24px margin = ~210px
+    * Column min-height 280px accounts for label + textarea + spacing
+
+**Benefits:**
+
+* **Improved Mobile UX:** Hamburger animation provides clear visual feedback
+* **Better Button Accessibility:** Equal-sized buttons side by side easier to tap
+* **Enhanced Visual Hierarchy:** Price positioned prominently under dish name
+* **Smoother Carousel:** Fixed navigation ensures proper card scrolling
+* **Balanced Forms:** Textarea height matches left column for visual harmony
+* **Bootstrap Integration:** Leveraged Bootstrap grid system for responsive behavior
+
+**Behavior:**
+
+* **Hamburger Icon:** Smoothly animates to X when menu opens, back to hamburger when closed
+* **Hero Buttons:** Display side by side below image on mobile, above description on desktop
+* **Menu Buttons:** Side by side (50% width each) on mobile, stacked on desktop
+* **Price Display:** Shows immediately after dish name for better readability
+* **Carousel:** Each navigation click scrolls exactly one card position
+* **Textarea:** Maintains consistent height with left column inputs, user-resizable
+
+**Technical Details:**
+
+* Used Bootstrap 5 grid classes: `.col-6`, `.col-lg-12`, `.w-100`, `.g-2`
+* CSS pseudo-elements for X icon animation (no additional HTML)
+* Calc() function in transform for precise carousel positioning
+* Flexbox with `flex-grow-1` and `min-height` for textarea sizing
+* All changes mobile-first, desktop behavior preserved
+
+---
+
 **End of Document**

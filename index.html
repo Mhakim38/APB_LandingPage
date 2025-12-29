@@ -55,7 +55,7 @@
                     <h2 class="hero-subtitle">Mayang Mall</h2>
                     <h3 class="hero-location">Terengganu</h3>
                     <p class="hero-description">Don't know what to eat at Terengganu? Come try our signature smashed fried chicken with fiery sambal at Ayam Penyet Best Mayang Mall. Experience authentic Indonesian flavors with every bite—perfectly crispy chicken, house-made sambal, and fresh accompaniments that bring the taste of tradition to your table.</p>
-                    <div class="hero-buttons">
+                    <div class="hero-buttons d-none d-lg-flex">
                         <a href="#menu" class="btn btn-menu">Menu</a>
                         <a href="#feedback" class="btn btn-feedback">Feedback</a>
                     </div>
@@ -63,6 +63,16 @@
                 <div class="col-lg-6">
                     <div class="hero-image animate-fade-in-right">
                         <img src="src/hero_img.jpeg" alt="Ayam Penyet" class="img-fluid" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2224%22 fill=%22%23999%22%3EAyam Penyet%3C/text%3E%3C/svg%3E';">
+                    </div>
+                </div>
+                <div class="col-12 d-lg-none">
+                    <div class="hero-buttons-mobile row g-2 mt-3">
+                        <div class="col-6">
+                            <a href="#menu" class="btn btn-menu w-100">Menu</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#feedback" class="btn btn-feedback w-100">Feedback</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,16 +131,19 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3 class="dish-name" id="dishName">Ayam Penyet Original</h3>
+                        <h2 class="dish-price text-center d-lg-none" id="dishPriceMobile">RM 12.90</h2>
                         <p class="dish-description" id="dishDescription">Traditional smashed fried chicken with our signature sambal, served with steamed rice, fresh vegetables, and condiments.</p>
                     </div>
                     <div class="col-lg-4">
-                        <div class="dish-actions">
-                            <div class="d-flex gap-2 justify-content-center mb-3">
-                                <a href="#book" class="btn btn-book-table">Book Table</a>
-                                <a href="#feedback" class="btn btn-feedback-alt">Feedback</a>
+                        <div class="row g-2 mb-3">
+                            <div class="col-12 col-lg-6">
+                                <a href="#book" class="btn pt-2 btn-book-table w-100">Book Table</a>
                             </div>
-                            <h2 class="dish-price text-center" id="dishPrice">RM 12.90</h2>
+                            <div class="col-12 col-lg-6">
+                                <a href="#feedback" class="btn btn-feedback-alt w-100">Feedback</a>
+                            </div>
                         </div>
+                        <h2 class="dish-price text-center d-none d-lg-block" id="dishPrice">RM 12.90</h2>
                     </div>
                 </div>
             </div>
@@ -219,9 +232,9 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="mb-4 h-100 d-flex flex-column">
+                            <div class="mb-4 d-flex flex-column booking-form-right">
                                 <label for="message" class="form-label">Special Request</label>
-                                <textarea class="form-control flex-grow-1" id="message" rows="8" placeholder="I want Ayam Penyet Extra spicy"></textarea>
+                                <textarea class="form-control flex-grow-1" id="message" placeholder="I want Ayam Penyet Extra spicy"></textarea>
                             </div>
                         </div>
                     </div>

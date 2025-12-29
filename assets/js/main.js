@@ -220,11 +220,14 @@ const feedbackCarousel = {
 
     updateCarousel: function() {
         // Calculate the translateX value
-        // Each card is (100% - total gap) / 3, where total gap is 2rem * 2 = 4rem
-        const cardWidthPercent = (100 / 3); // Each card takes up 1/3 of the width including proportional gaps
-        const translateValue = -this.currentIndex * cardWidthPercent;
+        // Each card is calc((100% - 4rem) / 3) width
+        // We need to move by (card width + gap) for each index
+        // Gap is 2rem between cards
+        const cardWidth = (100 - (2 * 2 * 100 / this.track.offsetWidth)) / 3; // Approximate card width %
+        const gapInPercent = (2 / this.track.offsetWidth) * 100; // 2rem gap in %
+        const translateValue = -(this.currentIndex * (cardWidth + gapInPercent));
         
-        this.track.style.transform = `translateX(${translateValue}%)`;
+        this.track.style.transform = `translateX(calc(${translateValue}% - ${this.currentIndex * 2}rem))`;
     }
 };
 
