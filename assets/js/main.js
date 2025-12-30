@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const feedbackCarousel = {
     currentIndex: 0,
     cards: [],
+    dots: [],
     track: null,
     totalCards: 6,
     visibleCards: 3,
@@ -168,6 +169,7 @@ const feedbackCarousel = {
 
     init: function() {
         this.cards = document.querySelectorAll('.feedback-card');
+        this.dots = document.querySelectorAll('.feedback-dot');
         this.track = document.getElementById('feedbackCarouselTrack');
         const prevBtn = document.getElementById('feedbackPrev');
         const nextBtn = document.getElementById('feedbackNext');
@@ -179,6 +181,15 @@ const feedbackCarousel = {
         if (nextBtn) {
             nextBtn.addEventListener('click', () => this.next());
         }
+
+        // Add click handlers to dots
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                this.currentIndex = index;
+                this.updateCarousel();
+                this.resetTimer();
+            });
+        });
 
         // Initialize position
         this.updateCarousel();
@@ -206,29 +217,59 @@ const feedbackCarousel = {
     },
 
     next: function() {
-        const maxIndex = this.totalCards - this.visibleCards; // 6 - 3 = 3
-        this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1); // 0,1,2,3 then back to 0
+        // On mobile, cycle through all cards individually
+        if (window.innerWidth < 768) {
+            this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+        } else {
+            // On desktop, cycle through 3-card views
+            const maxIndex = this.totalCards - this.visibleCards; // 6 - 3 = 3
+            this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1);
+        }
         this.updateCarousel();
         this.resetTimer();
     },
 
     prev: function() {
-        const maxIndex = this.totalCards - this.visibleCards; // 6 - 3 = 3
-        this.currentIndex = (this.currentIndex - 1 + (maxIndex + 1)) % (maxIndex + 1);
+        // On mobile, cycle through all cards individually
+        if (window.innerWidth < 768) {
+            this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+        } else {
+            // On desktop, cycle through 3-card views
+            const maxIndex = this.totalCards - this.visibleCards; // 6 - 3 = 3
+            this.currentIndex = (this.currentIndex - 1 + (maxIndex + 1)) % (maxIndex + 1);
+        }
         this.updateCarousel();
         this.resetTimer();
     },
 
     updateCarousel: function() {
-        // Calculate the translateX value
-        // Each card is calc((100% - 4rem) / 3) width
-        // We need to move by (card width + gap) for each index
-        // Gap is 2rem between cards
-        const cardWidth = (100 - (2 * 2 * 100 / this.track.offsetWidth)) / 3; // Approximate card width %
-        const gapInPercent = (2 / this.track.offsetWidth) * 100; // 2rem gap in %
-        const translateValue = -(this.currentIndex * (cardWidth + gapInPercent));
+        // Mobile: show one card at a time
+        if (window.innerWidth < 768) {
+            // Each card is 100% width + 2rem gap
+            // translateX needs to move by (100% + gap) for each card
+            const translateValue = -(this.currentIndex * 100);
+            const gapOffset = this.currentIndex * 2; // 2rem gap between cards
+            this.track.style.transform = `translateX(calc(${translateValue}% - ${gapOffset}rem))`;
+        } else {
+            // Desktop: show 3 cards, scroll by one card position
+            const cardWidth = (100 - (2 * 2 * 100 / this.track.offsetWidth)) / 3;
+            const gapInPercent = (2 / this.track.offsetWidth) * 100;
+            const translateValue = -(this.currentIndex * (cardWidth + gapInPercent));
+            this.track.style.transform = `translateX(calc(${translateValue}% - ${this.currentIndex * 2}rem))`;
+        }
         
-        this.track.style.transform = `translateX(calc(${translateValue}% - ${this.currentIndex * 2}rem))`;
+        // Update dots
+        this.updateDots();
+    },
+
+    updateDots: function() {
+        this.dots.forEach((dot, index) => {
+            if (index === this.currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
     }
 };
 

@@ -890,4 +890,100 @@ Commit messages must be **clear, senior-level, and descriptive**.
 
 ---
 
+### December 30, 2025
+
+#### Mobile Feedback Carousel Enhancement with Pagination Dots
+
+**Change:** Enhanced mobile feedback carousel to show cards one by one with pagination dots (indicators) and auto-slide functionality.
+
+**Reason:** User requested that on mobile, feedback cards should be displayed one at a time with visual indicators (dots) to show which card is currently active, plus automatic sliding to the next card for better mobile UX.
+
+**Implementation:**
+
+* **HTML Changes:**
+  * **Pagination Dots:** Added `.feedback-dots` container after carousel track
+    ```html
+    <div class="feedback-dots d-lg-none" id="feedbackDots">
+        <span class="feedback-dot active" data-index="0"></span>
+        <span class="feedback-dot" data-index="1"></span>
+        <!-- ... 6 dots total for 6 feedback cards -->
+    </div>
+    ```
+  * **Visibility:** Dots only visible on mobile using `.d-lg-none` Bootstrap class
+  * **Data Attributes:** Each dot has `data-index` matching card position
+
+* **CSS Changes:**
+  * **Dot Container Styling:**
+    * Flexbox layout with center justification
+    * 0.5rem gap between dots
+    * 2rem top margin (1.5rem on mobile)
+  * **Individual Dot Styling:**
+    * Circular shape: 12px × 12px (10px on mobile)
+    * Semi-transparent secondary color: `rgba(139, 197, 63, 0.3)`
+    * Smooth 0.3s transitions for all properties
+    * Clickable with cursor pointer
+    * 2px transparent border for active state
+  * **Active Dot:**
+    * Full secondary color: `var(--secondary)`
+    * Scale transform: 1.2× for prominence
+    * Visible border with secondary color
+  * **Mobile Optimization:** Smaller dots (10px) at ≤991px breakpoint
+
+* **JavaScript Enhancements:**
+  * **Dot Tracking:** Added `dots` array to store dot elements
+  * **Click Handlers:** Each dot clickable to jump to specific card
+    ```javascript
+    dot.addEventListener('click', () => {
+        this.currentIndex = index;
+        this.updateCarousel();
+        this.resetTimer();
+    });
+    ```
+  * **Responsive Navigation Logic:**
+    * **Mobile (< 768px):** Cycles through all 6 cards individually (0-5)
+    * **Desktop (≥ 768px):** Shows 3 cards at once, cycles through 4 positions (0-3)
+  * **Mobile Transform:** Simple `translateX(-100% × index)` for full-width cards
+  * **Dot Update Function:** `updateDots()` adds/removes `.active` class based on `currentIndex`
+  * **Auto-Rotation:** Existing 5-second auto-slide maintained, works with dots
+
+**Benefits:**
+
+* **Clear Navigation:** Dots provide visual feedback of position within carousel
+* **Better Mobile UX:** One card at a time reduces cognitive load and scrolling
+* **Interactive Control:** Users can tap dots to jump to any card directly
+* **Smooth Auto-Play:** 5-second auto-rotation keeps content engaging
+* **Responsive Design:** Desktop maintains 3-card view, mobile shows 1 card
+* **Visual Feedback:** Active dot scales and changes color for clear indication
+* **Infinite Loop:** Seamlessly cycles from last card back to first
+
+**Behavior:**
+
+* **Mobile View (< 768px):**
+  * Shows 1 feedback card at a time, full width
+  * 6 dots displayed below carousel
+  * Active dot highlighted with secondary color and scale
+  * Auto-advances to next card every 5 seconds
+  * Arrow buttons navigate one card at a time
+  * Dots clickable to jump to specific card
+  * Infinite loop: card 6 → card 1
+
+* **Desktop View (≥ 768px):**
+  * Shows 3 feedback cards simultaneously
+  * Dots hidden (`.d-lg-none`)
+  * Navigates by sliding window (3 cards visible)
+  * Arrow buttons advance one position
+  * Auto-advances every 5 seconds
+
+**Technical Details:**
+
+* Window width check: `window.innerWidth < 768` determines mobile vs desktop behavior
+* Mobile transform: Simple percentage-based (`translateX(-100% × index)`)
+* Desktop transform: Calc-based with gap compensation
+* Dot synchronization: `updateDots()` called after every navigation
+* Auto-rotation preserved: Timer resets on manual interaction (arrow/dot click)
+* Bootstrap class `.d-lg-none` hides dots on desktop without JavaScript
+* No additional dependencies - pure vanilla JavaScript
+
+---
+
 **End of Document**
